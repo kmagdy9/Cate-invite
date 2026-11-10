@@ -1,0 +1,2005 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Step Inside — CATE × Atlas Copco</title>
+<meta name="description" content="You are invited. CATE × Atlas Copco GA 75 at Air Tech — December 17–20, 9:00 AM – 7:00 PM, Egypt International Exhibitions Center, Hall 1 | Booth 1D30.">
+<meta name="theme-color" content="#ffffff">
+<!-- Share preview (WhatsApp / LinkedIn / Facebook). og-image.jpg is 1200×630.
+     ⚠ Once the invitation is hosted, put the FULL https:// address in og:url and og:image
+     (WhatsApp and Facebook ignore relative image paths). -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="You are invited — CATE × Atlas Copco at Air Tech">
+<meta property="og:description" content="December 17–20 · 9:00 AM – 7:00 PM · Egypt International Exhibitions Center. Step inside the power of compressed air.">
+<meta property="og:image" content="og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Atlas Copco GA 75 compressor — CATE × Atlas Copco invite you to Air Tech, December 17–20">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Exo+2:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;1,300&display=swap" rel="stylesheet">
+
+<style>
+/* =========================================================
+   TOKENS (Light Theme - CATE Identity)
+   ========================================================= */
+:root{
+  --bg: #ffffff;
+  --petrol: #004b66;      /* Dark Blue for texts */
+  --turq: #00A5D9;        /* Atlas Copco Cyan */
+  --turq-hi: #007ea6;
+  --ice: #333333;         /* Base text color */
+  --gold: #c9a24b;
+  --gold-hi: #a67c1e;
+  --amber: #e8a12a;       /* oil amber from the GA 3D demo — ties the dark machine ride to the light scenes */
+  --glass-brd: rgba(0, 165, 217, 0.25);
+  --glow-turq: 0 0 10px rgba(0, 165, 217, 0.2);
+  --glow-gold: 0 0 10px rgba(201, 162, 75, 0.3);
+  --S: min(88vh, 150vw, 860px);
+  --bar: clamp(0px, calc(7vh - 18px), 58px);
+  --ease-cine: cubic-bezier(.77, 0, .18, 1);
+  --ease-out: cubic-bezier(.16, 1, .3, 1);
+}
+@media (max-aspect-ratio:4/5){ :root{ --bar:0px; } }
+
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:var(--bg);color:var(--ice);overflow:hidden}
+body{font-family:'Exo 2',system-ui,sans-serif;-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent;user-select:none}
+img{display:block}
+
+#film{position:fixed;inset:0;overflow:hidden;background:var(--bg)}
+
+.scene{position:absolute;inset:0;opacity:0;visibility:hidden;pointer-events:none;
+  transition:opacity 1.1s ease,visibility 0s linear 1.1s}
+.scene.on{opacity:1;visibility:visible;pointer-events:auto;transition:opacity 1.1s ease,visibility 0s}
+
+/* Light Glassmorphism panel */
+.glass{
+  background: linear-gradient(145deg, rgba(255,255,255,0.9), rgba(240,248,255,0.6));
+  border: 1px solid var(--glass-brd);
+  border-radius: 20px;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.08), inset 0 1px 0 rgba(255,255,255,1);
+}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:.9em;
+  font-family:'Barlow Condensed',sans-serif;font-weight:600;
+  font-size:clamp(14px,1.75vw,22px);letter-spacing:.38em;text-transform:uppercase;
+  color: var(--petrol);
+}
+.eyebrow::before,.eyebrow::after{content:'';width:2.4em;height:1px;background:linear-gradient(90deg,transparent,var(--turq))}
+.eyebrow::after{background:linear-gradient(90deg,var(--turq),transparent)}
+
+/* Scene headings ("Save the date", "Opening hours", "The venue"): hidden until their scene activates,
+   then slide up + un-blur, and the side rules draw outward from the text. */
+.date-panel .eyebrow,.time-panel .eyebrow,.holo .eyebrow{opacity:0;transform:translateY(18px);filter:blur(6px)}
+.date-panel .eyebrow::before,.time-panel .eyebrow::before,.holo .eyebrow::before{transform:scaleX(0);transform-origin:100% 50%}
+.date-panel .eyebrow::after,.time-panel .eyebrow::after,.holo .eyebrow::after{transform:scaleX(0);transform-origin:0% 50%}
+.panel-in .eyebrow,#s-cool.project .holo .eyebrow{animation:eyebrowIn 1.1s var(--ease-out) .3s forwards}
+.panel-in .eyebrow::before,.panel-in .eyebrow::after,
+#s-cool.project .holo .eyebrow::before,#s-cool.project .holo .eyebrow::after{animation:ruleIn 1s var(--ease-out) .75s forwards}
+@keyframes eyebrowIn{to{opacity:1;transform:none;filter:blur(0)}}
+@keyframes ruleIn{to{transform:scaleX(1)}}
+
+.panel{opacity:0;transform:translateY(24px) scale(.97);transition:opacity 1s ease,transform 1.2s var(--ease-out)}
+.panel-in .panel{opacity:1;transform:none}
+
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* =========================================================
+   STAGE
+   ========================================================= */
+#s-stage{perspective:1800px;overflow:hidden; background: var(--bg);}
+.tilt{position:absolute;left:50%;top:50%;width:var(--S);height:var(--S);margin:calc(var(--S) / -2) 0 0 calc(var(--S) / -2);
+  transform:rotateY(calc(var(--px,0)*5deg)) rotateX(calc(var(--py,0)*-3deg));transition:transform 1.4s var(--ease-out)}
+@media (max-aspect-ratio:4/5){.tilt{top:44%}}
+.stage{position:relative;width:var(--S);height:var(--S);will-change:transform,opacity}
+
+.spot{position:absolute;inset:-30%;opacity:0;transition:opacity 2.8s ease;
+  background:radial-gradient(closest-side at 50% 48%,rgba(0,165,217,.15),transparent 78%)}
+.floor{position:absolute;left:-60%;right:-60%;top:86%;height:60%;opacity:0;transition:opacity 2.8s ease;
+  background:radial-gradient(ellipse 50% 40% at 50% 0%,rgba(0,75,102,.05),transparent 80%)}
+
+.mgroup{position:absolute;inset:0;opacity:0;transition:opacity 2.6s ease}
+.machine,.reflect{position:absolute;inset:0;width:100%;height:100%; mix-blend-mode: multiply;}
+.reflect{transform-origin:50% 86%;transform:scaleY(-1);opacity:.1;
+  -webkit-mask-image:linear-gradient(to bottom,transparent 52%,rgba(0,0,0,.95) 86%);
+          mask-image:linear-gradient(to bottom,transparent 52%,rgba(0,0,0,.95) 86%)}
+
+/* ---- Interior: what you see behind the doors (deep petrol cavity, bright air core, depth lines) ---- */
+.interior{position:absolute;left:23%;top:21.4%;width:33.4%;height:59.4%;opacity:0;transition:opacity .35s ease;overflow:hidden;border-radius:2px;
+  background:radial-gradient(ellipse 46% 34% at 50% 50%,#ffffff 0%,#e4fbfc 10%,#7fdde3 24%,#2c6fb3 44%,#18293a 70%,#091119 100%);
+  box-shadow:inset 0 0 0 2px rgba(9,17,25,.7),inset 0 0 60px rgba(9,17,25,.85)}
+.interior svg{position:absolute;inset:0;width:100%;height:100%}
+.interior .tun{fill:none;stroke:rgba(170,240,255,.55);stroke-width:1.2;vector-effect:non-scaling-stroke}
+.in-rays{position:absolute;inset:-60%;opacity:0;mix-blend-mode:screen;
+  background:repeating-conic-gradient(from 0deg,rgba(255,255,255,.35) 0deg 2deg,transparent 2deg 10deg);
+  -webkit-mask-image:radial-gradient(closest-side,#000 10%,transparent 70%);mask-image:radial-gradient(closest-side,#000 10%,transparent 70%)}
+.stage.open .in-rays{opacity:1;transition:opacity 1.2s ease .4s;animation:spin 30s linear infinite}
+
+/* ---- Doors: real 3D leaves (photo front, drawn steel back + edge), hinged on the outer edges ---- */
+.door{position:absolute;left:calc(var(--x)*1%);top:calc(var(--y)*1%);width:calc(var(--w)*1%);height:calc(var(--h)*1%);
+  transform-style:preserve-3d;transition:transform .7s var(--ease-out);will-change:transform}
+.door.l{--x:23;--y:21.4;--w:17.1;--h:59.4;transform-origin:0% 50%}
+.door.r{--x:40.1;--y:21.4;--w:16.3;--h:59.4;transform-origin:100% 50%}
+.door .face{position:absolute;inset:0;overflow:hidden;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.door .front img{position:absolute;max-width:none;
+  width:calc(100% * 100 / var(--w));height:calc(100% * 100 / var(--h));
+  left:calc(-100% * var(--x) / var(--w));top:calc(-100% * var(--y) / var(--h))}
+.door .front::after{content:'';position:absolute;inset:0;opacity:0;transition:opacity 1.4s ease;
+  background:linear-gradient(90deg,rgba(0,0,0,0),rgba(0,0,0,.45))}
+.door.r .front::after{background:linear-gradient(270deg,rgba(0,0,0,0),rgba(0,0,0,.45))}
+.stage.open .door .front::after{opacity:1}
+.door .back{transform:rotateY(180deg);
+  background:
+    radial-gradient(circle at 50% 50%,rgba(0,40,60,.14) 1px,transparent 1.7px) 0 0/9px 9px,
+    linear-gradient(90deg,#b9c6cd,#e9eff2 40%,#cfd9de 70%,#a9b8c0);
+  box-shadow:inset 0 0 0 5px #8fa1ab,inset 0 0 0 7px rgba(0,75,102,.35),inset 0 0 34px rgba(0,30,45,.35)}
+.door .back::before{content:'';position:absolute;left:14%;right:14%;top:8%;bottom:8%;border:2px solid rgba(0,75,102,.25);border-radius:4px}
+.door .back::after{content:'';position:absolute;top:46%;width:6%;height:8%;border-radius:3px;background:var(--petrol)}
+.door.l .back::after{left:8%}
+.door.r .back::after{right:8%}
+.door .edge{position:absolute;top:0;bottom:0;width:10px;background:linear-gradient(90deg,#6f838e,#dfe7eb 50%,#6f838e)}
+.door.l .edge{right:0;transform-origin:100% 50%;transform:rotateY(-90deg)}
+.door.r .edge{left:0;transform-origin:0% 50%;transform:rotateY(90deg)}
+
+.glow{position:absolute;left:23%;top:21.4%;width:33.4%;height:59.4%;pointer-events:none}
+.burst{position:absolute;inset:-40%;opacity:0; border-radius:50%;
+  background:radial-gradient(closest-side,rgba(0,165,217,.3),transparent)}
+
+.seam{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none;
+  filter:drop-shadow(0 0 3px rgba(0,165,217,.5))}
+.seam path{fill:none;stroke:var(--turq);stroke-width:2.2;vector-effect:non-scaling-stroke;stroke-linecap:round;stroke-linejoin:round;
+  stroke-dasharray:1 1;stroke-dashoffset:1}
+.shaft{position:absolute;left:40.1%;top:50%;width:2px;height:0;opacity:0;transform:translate(-50%,-50%);pointer-events:none;
+  background:linear-gradient(to bottom,transparent,var(--turq) 28%,var(--petrol) 50%,var(--turq) 72%,transparent);
+  box-shadow:0 0 16px 3px rgba(0,165,217,.3)}
+
+/* stage states, in timeline order (later rules win) */
+.stage.trace .seam .edge{animation:draw 1.8s var(--ease-cine) forwards}
+.stage.trace .seam .mid{animation:draw 1s ease-out 1.5s forwards}
+.stage.shaft-on .shaft{animation:shaft 1.8s var(--ease-out) forwards}
+.stage.lit{animation:dolly 10s ease-out forwards}
+.stage.lit .mgroup,.stage.lit .spot,.stage.lit .floor{opacity:1}
+.stage.lit .seam{opacity:.35;transition:opacity 2s ease}
+.stage.lit .shaft{animation:shaftOut 1.6s ease forwards}
+/* unlock: latches release — doors pop forward, light leaks through the seam */
+.stage.unlock .seam{opacity:1;transition:opacity .25s ease}
+.stage.unlock .interior{opacity:1}
+.stage.unlock .door.l{transform:perspective(1600px) translateZ(14px) translateX(-2%)}
+.stage.unlock .door.r{transform:perspective(1600px) translateZ(14px) translateX(2%)}
+/* open: doors swing out on their hinges WHILE the camera starts pushing toward the opening */
+.stage.open{transform-origin:39.7% 51%;animation:approach 2.3s cubic-bezier(.45,0,.55,1) forwards}
+.stage.open .seam{opacity:0;transition:opacity .6s ease}
+.stage.open .door.l{animation:doorL 2.1s var(--ease-cine) forwards}
+.stage.open .door.r{animation:doorR 2.1s var(--ease-cine) .08s forwards}
+.stage.open .burst{animation:burst 2.4s var(--ease-out) forwards}
+/* dive: continues seamlessly from the approach (same origin, same start scale) and flies through the doorway */
+.stage.dive{transform-origin:39.7% 51%;animation:dive 1.9s cubic-bezier(.6,0,.9,.4) forwards}
+.stage.dissolve{animation:dissolve 3s ease-in forwards}
+
+@keyframes draw{to{stroke-dashoffset:0}}
+@keyframes shaft{0%{height:0;opacity:0}15%{opacity:1}100%{height:230vh;opacity:1;width:4px}}
+@keyframes shaftOut{from{height:230vh;width:4px;opacity:1}to{height:230vh;width:1px;opacity:0}}
+@keyframes dolly{from{transform:scale(.94)}to{transform:scale(1)}}
+@keyframes approach{from{transform:scale(1)}to{transform:scale(1.32)}}
+@keyframes doorL{
+  0%{transform:perspective(1600px) translateZ(14px) translateX(-2%) rotateY(0deg)}
+  22%{transform:perspective(1600px) translateZ(34px) translateX(-5%) rotateY(-8deg)}
+  100%{transform:perspective(1600px) translateZ(34px) translateX(-5%) rotateY(-116deg)}}
+@keyframes doorR{
+  0%{transform:perspective(1600px) translateZ(14px) translateX(2%) rotateY(0deg)}
+  22%{transform:perspective(1600px) translateZ(34px) translateX(5%) rotateY(8deg)}
+  100%{transform:perspective(1600px) translateZ(34px) translateX(5%) rotateY(116deg)}}
+@keyframes burst{0%{opacity:0;transform:scale(.2)}25%{opacity:1}100%{opacity:0;transform:scale(1.25)}}
+@keyframes dive{0%{transform:scale(1.32) rotate(0deg);opacity:1}78%{opacity:1}100%{transform:scale(16) rotate(-4deg);opacity:0}}
+@keyframes dissolve{0%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(1.07) translateY(-1.5%)}}
+
+.chip{position:absolute;left:clamp(16px,5vw,72px);bottom:calc(var(--bar) + clamp(56px,10vh,110px));padding:18px 22px 16px;min-width:220px;
+  opacity:0;transform:translateX(-20px);transition:opacity 1s ease,transform 1.2s var(--ease-out)}
+.chip strong{display:block;font-size:clamp(28px,3.4vw,44px);font-weight:800;letter-spacing:.04em;margin:6px 0 2px; color:var(--petrol);}
+.chip .meta{font-family:'Barlow Condensed';font-weight:600;letter-spacing:.18em;text-transform:uppercase;font-size:clamp(11px,1vw,13px);color:var(--turq-hi)}
+#s-stage.chip-in .chip{opacity:1;transform:none}
+
+/* =========================================================
+   HOOK
+   ========================================================= */
+/* text sits dead-centre of the viewport; the stage (seam/doors) only starts drawing as it fades out */
+#s-hook{display:flex;align-items:center;justify-content:center;padding:var(--bar) 6vw}
+.hook-line{position:relative;max-width:min(92vw,1200px);margin:0 auto;text-align:center;
+  font-weight:600;font-size:clamp(26px,4.4vw,64px);letter-spacing:.02em;line-height:1.22;color:var(--petrol);
+  text-shadow:0 0 18px #fff,0 0 36px #fff}
+.hook-line .w{display:inline-block;white-space:nowrap}
+.hook-line .hl{color:var(--turq);}
+.hook-line .ch{display:inline-block;opacity:0;transform:translateY(.35em);filter:blur(10px)}
+#s-hook.say .ch{animation:chIn 1s var(--ease-out) forwards;animation-delay:calc(var(--i) * 34ms)}
+#s-hook.fade .hook-line{opacity:0;transform:translateY(-12px);filter:blur(8px);transition:opacity 1s ease,transform 1s ease,filter 1s ease}
+@keyframes chIn{to{opacity:1;transform:none;filter:blur(0)}}
+
+/* =========================================================
+   SCENES 2 - 6 (Light Backgrounds)
+   ========================================================= */
+#s-into{background:radial-gradient(circle at 50% 50%, #f0f8ff 0%, #e0f2f8 40%, var(--bg) 75%)}
+/* DOM copy of the particle text: same font/size/spacing as the canvas sample, so it lands exactly under the particles.
+   padding-left balances the trailing letter-spacing (the canvas does the same with its +fs*LS/2 offset). */
+.inv-glow{position:absolute;left:0;right:0;top:50%;text-align:center;padding-left:.06em;
+  font-weight:800;font-size:var(--fs,120px);line-height:1.05;letter-spacing:.06em;color:var(--turq);
+  opacity:0;transform:translateY(-50%) scale(1.06);filter:blur(16px);will-change:opacity,filter,transform}
+#s-into.settle .inv-glow{animation:invIn 2.4s var(--ease-out) forwards, invGlow 4s ease-in-out 2.4s infinite alternate}
+@keyframes invIn{
+  0%{opacity:0;transform:translateY(-50%) scale(1.06);filter:blur(16px)}
+  45%{opacity:1}
+  100%{opacity:1;transform:translateY(-50%) scale(1);filter:blur(0)}}
+@keyframes invGlow{from{text-shadow:0 0 0 rgba(0,165,217,0)}to{text-shadow:0 0 28px rgba(0,165,217,.35)}}
+
+/* ---- Scene 2a: INSIDE THE MACHINE — fly-through behind the doors ----
+   Same palette as the door cavity (.interior), so the dive continues straight into it.
+   Each .gate is a full-bleed square layer that flies from deep inside the machine past the camera
+   (translateZ under one shared perspective): bulkhead → intake filters → bulkhead → drive gears →
+   bulkhead → screw element, then the bright core flares white into "YOU ARE INVITED".
+   Only transform/opacity animate on the gates; the art itself is built once by Inside.build(). */
+/* Palette taken from the GA 3D demo (compressor-demo): dark machine bay #18293a → #091119, motor blue #2c6fb3,
+   cast iron #5c6a74, filter media #eadfbd, oil amber #e8a12a, dry-air cyan #7fdde3, run-LED green #22c55e. */
+#s-inside{overflow:hidden;
+  background:radial-gradient(circle at 50% 50%,#ffffff 0%,#e4fbfc 4%,#7fdde3 11%,#2c6fb3 25%,#18293a 46%,#0e1a25 74%,#091119 100%)}
+#s-inside .core{position:absolute;left:50%;top:50%;width:60vmin;height:60vmin;margin:-30vmin 0 0 -30vmin;border-radius:50%;
+  background:radial-gradient(closest-side,#fff 0%,rgba(228,251,252,.92) 30%,rgba(127,221,227,.35) 62%,rgba(44,111,179,0) 100%);
+  transform:scale(.6);opacity:.9}
+/* warm oil-amber glow low in the bay (the oil circuit), under the gates */
+#s-inside::before{content:'';position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(ellipse 70% 38% at 50% 100%,rgba(232,161,42,.22),rgba(232,161,42,0) 70%)}
+#s-inside.play .core{animation:coreGrow 4.4s cubic-bezier(.5,0,.8,.4) forwards}
+#s-inside.flare .core{animation:coreFlare 1s cubic-bezier(.6,0,.9,.5) forwards}
+@keyframes coreGrow{to{transform:scale(1.25)}}
+@keyframes coreFlare{from{transform:scale(1.25);opacity:.9}to{transform:scale(9);opacity:1}}
+#s-inside .wash{position:absolute;inset:0;background:#f0f8ff;opacity:0;pointer-events:none}
+#s-inside.flare .wash{opacity:1;transition:opacity .9s ease .25s}
+
+/* camera: one shared perspective + a slow roll, so the whole ride banks gently */
+.tunnel{position:absolute;inset:0;perspective:900px;perspective-origin:50% 50%;transform-style:preserve-3d}
+#s-inside.play .tunnel{animation:roll 5.2s ease-in-out forwards}
+@keyframes roll{from{transform:rotate(-5deg)}to{transform:rotate(4deg)}}
+.gate{position:absolute;left:50%;top:50%;
+  width:min(100vmax,150vmin);height:min(100vmax,150vmin);margin:calc(min(100vmax,150vmin) / -2) 0 0 calc(min(100vmax,150vmin) / -2);
+  opacity:0;transform:translateZ(-2600px);will-change:transform,opacity;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.gate svg{display:block;width:100%;height:100%;overflow:visible}
+#s-inside.play .gate{animation:fly 2.4s linear var(--dl,0s) both}
+@keyframes fly{
+  0%{opacity:0;transform:translateZ(-2600px) rotate(var(--r0,0deg))}
+  18%{opacity:1}
+  82%{opacity:1}
+  100%{opacity:0;transform:translateZ(650px) rotate(var(--r1,0deg))}}
+/* Machine running: gears, fan, coupling, rotors, oil and LEDs all move while the scene plays
+   (.play is set by show(), so nothing ticks while the scene is hidden).
+   Gear period = 0.05 s × teeth → every gear moves ~1/3 tooth pitch per frame at 60 fps: fast, but below the
+   strobing limit, and still perfectly meshed (same pitch-line speed for all). */
+.ig-gear,.ig-spin{transform-box:fill-box;transform-origin:50% 50%}
+#s-inside.play .ig-gear,#s-inside.play .ig-spin{animation:gspin var(--d) linear infinite}
+#s-inside.play .ig-gear.ccw,#s-inside.play .ig-spin.ccw{animation-direction:reverse}
+.ig-win{fill:none;stroke:#0b141c;stroke-dasharray:.7 .3}
+#s-inside.play .ig-lobes{animation:lobes .45s linear infinite}
+/* demo colours on the shared gear parts: motor-blue axles, oil-amber gold gears */
+#s-inside .g-axle{fill:url(#inAxle);stroke:#0f2f52}
+#s-inside .g-hub{fill:url(#inHub);stroke:#0b141c}
+#s-inside .g-teeth.gold{stroke:#d08a2a}
+#s-inside .g-teeth-face.gold{stroke:#ffc35a}
+#s-inside .g-teeth-edge.gold{stroke:#5a3505}
+/* oil film flowing along the rotor mesh line + LED blink */
+.ig-oil{stroke-dasharray:46 34}
+#s-inside.play .ig-oil{animation:oilRun .5s linear infinite}
+@keyframes oilRun{to{stroke-dashoffset:-80}}
+#s-inside.play .ig-led{animation:ledBlink .9s linear infinite}
+@keyframes ledBlink{0%,49%{opacity:1}50%,100%{opacity:.3}}
+/* the coupling stripes slide by → reads as a spinning shaft seen from the side */
+#s-inside.play .ig-coup{animation:coup .22s linear infinite}
+@keyframes coup{to{transform:translateY(-32px)}}
+
+/* component caption, bottom-left: "01 — AIR INTAKE FILTER" */
+.in-cap{position:absolute;left:clamp(16px,5vw,72px);bottom:calc(max(var(--bar),60px) + clamp(20px,5vh,56px));
+  display:flex;align-items:center;gap:.9em;white-space:nowrap;
+  font-family:'Barlow Condensed',sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.32em;
+  font-size:clamp(14px,1.6vw,20px);color:#e9fbff;text-shadow:0 0 14px rgba(0,165,217,.7);
+  opacity:0;transform:translateY(10px);transition:opacity .45s ease,transform .6s var(--ease-out)}
+.in-cap::before{content:'';width:2.6em;height:1px;background:linear-gradient(90deg,transparent,var(--turq))}
+.in-cap .n{color:#ffb020;font-weight:700}
+.in-cap.on{opacity:1;transform:none}
+
+/* HUD turns light while we're inside the dark machine */
+.hud{transition:opacity 1.6s ease,color .8s ease}
+body.hud-dark .hud{color:#dff6ff}
+body.hud-dark .btn{color:#dff6ff;background:rgba(0,40,60,.35);border-color:rgba(0,165,217,.5)}
+body.hud-dark .progress{background:rgba(255,255,255,.18)}
+
+/* booth mode (?booth): plays on a loop on the stand screen — no buttons, no cursor */
+body.booth .ctrl{display:none}
+body.booth,body.booth *{cursor:none!important}
+
+/* ---- Scene 3: screw rotors (inline SVG) ---- */
+#s-rotors{background:radial-gradient(ellipse at 50% 50%, #e6f4f9 0%, #f4f9fb 55%, var(--bg) 100%);overflow:hidden}
+.rig{position:absolute;left:50%;top:50%;width:175vmax;transform:translate(-50%,-50%) rotate(-13deg); mix-blend-mode: multiply; opacity: 0.9;}
+.rig svg{display:block;width:100%;height:auto;overflow:visible}
+#s-rotors.play .rig{animation:push 10s linear forwards}
+@keyframes push{from{transform:translate(-50%,-50%) rotate(-13deg) scale(1)}to{transform:translate(-50%,-50%) rotate(-11deg) scale(1.14)}}
+.lobes{animation:lobes .9s linear infinite;animation-play-state:paused}
+@keyframes lobes{to{transform:translateX(180px)}}
+.rotor-edge{fill:none;stroke:rgba(0,75,102,.45);stroke-width:2}
+.bore{stroke:rgba(0,75,102,.3);stroke-width:2;stroke-dasharray:14 10}
+.mesh-glow{stroke:rgba(0,165,217,.45);stroke-width:16}
+.mesh-line{stroke:#c8f4ff;stroke-width:3}
+.pocket{fill:url(#pocketG);transform-box:fill-box;transform-origin:50% 50%;opacity:0;
+  animation:pocket 3.6s linear infinite;animation-delay:var(--pd);animation-play-state:paused}
+@keyframes pocket{0%{transform:translateX(60px) scale(1.25,1);opacity:0}10%{opacity:1}85%{opacity:1}100%{transform:translateX(1540px) scale(.3,.55);opacity:0}}
+#s-rotors.play .lobes,#s-rotors.play .pocket{animation-play-state:running}
+
+.date-wrap{position:absolute;inset:0;display:grid;place-items:center;padding:0 4vw}
+.date-panel{padding:clamp(18px,3vw,34px) clamp(22px,4.4vw,64px);text-align:center;max-width:94vw}
+.burn{position:relative;display:inline-block;margin-top:clamp(8px,1.4vw,16px);
+  font-weight:800;font-size:clamp(34px,7.6vw,112px);letter-spacing:.035em;line-height:1;white-space:nowrap}
+/* very narrow phones (< 360px, e.g. iPhone SE 1st gen): shrink the date so it fits on one line */
+@media (max-width:359px){
+  .date-panel{padding-left:14px;padding-right:14px}
+  .burn{font-size:8.6vw}
+}
+.burn-text{display:block;clip-path:inset(-40% 100% -40% -5%);color:var(--petrol);
+  transition:color 1.8s ease}
+.laser{position:absolute;left:0;top:50%;width:2px;height:320vh;transform:translate(-50%,-50%);opacity:0;pointer-events:none;
+  background:var(--turq); box-shadow:0 0 12px 2px rgba(0,165,217,.5)}
+#s-rotors.lasing .burn-text{animation:reveal 2.8s linear forwards}
+#s-rotors.lasing .laser{animation:sweepX 2.8s linear forwards}
+#s-rotors.burned .burn-text{clip-path:none;color:var(--turq);}
+@keyframes reveal{to{clip-path:inset(-40% 0% -40% -5%)}}
+@keyframes sweepX{0%{left:0;opacity:0}6%{opacity:1}94%{opacity:1}100%{left:100%;opacity:0}}
+
+/* ---- Scene 4: meshed gear train + belt (inline SVG) ---- */
+#s-gears{background:radial-gradient(ellipse at 45% 50%, #e6f4f9 0%, #f4f9fb 55%, var(--bg) 100%)}
+#gearsvg{position:absolute;inset:0;width:100%;height:100%; mix-blend-mode: multiply; opacity: 0.96;}
+#s-gears.play #gearsvg{animation:gpush 8.5s linear forwards}
+@keyframes gpush{from{transform:scale(1.02)}to{transform:scale(1.1)}}
+.gear{transform-box:fill-box;transform-origin:50% 50%;animation:gspin var(--d) linear infinite;animation-play-state:paused}
+.gear.ccw{animation-direction:reverse}
+#s-gears.play .gear,#s-gears.play .belt-run{animation-play-state:running}
+@keyframes gspin{to{transform:rotate(360deg)}}
+/* Realism layers. Everything that rotates is rotation-invariant (radial gradients, concentric rings), while
+   the directional light (top-left key light), bevels and cast shadows sit in STATIC layers built by JS
+   (see Gears.enhance). So the lighting never spins with the gear, and no SVG filters are re-run per frame. */
+.g-teeth{fill:none;stroke:#8a9ea8;stroke-width:18;stroke-dasharray:12.5664 18.8496}
+.g-teeth.gold{stroke:#b8892c}
+/* dark outline around every tooth (slightly longer + wider dash drawn underneath) */
+.g-teeth-edge{fill:none;stroke:rgba(30,48,58,.85);stroke-width:20;stroke-dasharray:14.1664 17.2496;stroke-dashoffset:.8}
+.g-teeth-edge.gold{stroke:#6e5014}
+/* flat tooth face inside a chamfer (shorter + narrower dash drawn on top) */
+.g-teeth-face{fill:none;stroke:#b9c8cf;stroke-width:11;stroke-dasharray:8.5664 22.8496;stroke-dashoffset:-2}
+.g-teeth-face.gold{stroke:#e8c97a}
+.g-body{fill:url(#gBody);stroke:rgba(20,40,52,.55);stroke-width:1.5}
+.g-lathe{fill:url(#gLathe);pointer-events:none}
+.g-win-rim{fill:none;stroke:url(#gHoleWall);stroke-dasharray:.7 .3}
+.g-win{fill:none;stroke:url(#gHole);stroke-dasharray:.7 .3}
+.g-bolts{fill:none;stroke:#2f434d;stroke-linecap:round;stroke-dasharray:.02 .98}
+.g-bolts-hi{fill:none;stroke:#c9d6dc;stroke-linecap:round;stroke-dasharray:.02 .98}
+.g-ring{fill:none;stroke:rgba(10,35,48,.38);stroke-width:1.5}
+.g-ao{fill:url(#gAO)}
+.g-hub{fill:url(#gHub);stroke:#0d3446;stroke-width:2}
+.g-axle{fill:url(#gAxle);stroke:rgba(0,40,60,.6);stroke-width:1}
+.g-key{fill:#e9f1f4;stroke:rgba(0,30,45,.5);stroke-width:.8}
+/* static light + shadow layers */
+.g-shadow{fill:url(#gShadow)}
+.g-sheen{fill:url(#gSheen)}
+.g-sheen-t{fill:none;stroke:url(#gSheenT);stroke-width:18}
+.g-bevel{fill:none;stroke:url(#gBevel)}
+.g-bevel-in{fill:none;stroke:url(#gBevelIn)}
+.g-hub-sheen{fill:url(#gHubSheen)}
+.g-spec{fill:url(#gSpec)}
+.belt-shadow{fill:none;stroke:rgba(0,25,38,.22);stroke-width:16}
+.belt-base{fill:none;stroke:url(#gBelt);stroke-width:10}
+.belt-run{fill:none;stroke:#0b2633;stroke-width:10;stroke-dasharray:4 10;animation:belt .3s linear infinite;animation-play-state:paused}
+@keyframes belt{to{stroke-dashoffset:-14}}
+
+.time-wrap{position:absolute;inset:0;display:grid;place-items:center;padding:0 3vw}
+.time-panel{padding:clamp(18px,2.8vw,34px) clamp(16px,3.4vw,48px);text-align:center;max-width:96vw}
+.flips{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:.18em .34em;margin-top:clamp(10px,1.4vw,18px);
+  font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:clamp(30px,7vw,96px)}
+.fgroup{display:flex;align-items:center;gap:.06em}
+.flap{position:relative;width:.62em;height:1.16em;perspective:5em;color:#fff;}
+.flap .half,.flap .leaf{position:absolute;left:0;right:0;height:50%;overflow:hidden}
+.flap .half{background:linear-gradient(#004b66,#003a52)}
+.flap .top,.flap .leaf{top:0;border-radius:.07em .07em 0 0}
+.flap .bot{bottom:0;border-radius:0 0 .07em .07em;background:linear-gradient(#003a52,#002a3d)}
+.flap .leaf{overflow:visible;transform-origin:50% 100%;transform-style:preserve-3d;z-index:2}
+.flap .face{position:absolute;inset:0;overflow:hidden;backface-visibility:hidden;-webkit-backface-visibility:hidden;background:linear-gradient(#004b66,#003a52);border-radius:.07em .07em 0 0}
+.flap .back{transform:rotateX(180deg);background:linear-gradient(#003a52,#002a3d);border-radius:0 0 .07em .07em}
+.flap b{position:absolute;left:0;right:0;top:0;height:1.16em;line-height:1.16em;text-align:center;font-weight:700}
+.flap .bot b,.flap .back b{top:-100%}
+.flap.set{color:#fff}
+.flap.ampm{color:var(--gold-hi);}
+.fsep{color:var(--turq);padding:0 .02em}
+.fdash{color:var(--gold-hi);padding:0 .1em}
+.fgap{width:.16em}
+
+#s-cool{background:radial-gradient(ellipse at 50% 62%, #e0f2f8 0%, #f4f9fb 50%, var(--bg) 100%);overflow:hidden}
+.holo{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:min(94vw,1150px);text-align:center}
+.holo-text{position:relative;margin-top:clamp(10px,1.6vw,20px);white-space:pre-line;opacity:0;transform:scaleY(.02);
+  font-weight:700;font-size:clamp(26px,5.3vw,78px);line-height:1.1;letter-spacing:.07em;color:var(--petrol);}
+.emitter{position:relative;margin:clamp(18px,3vh,36px) auto 0;width:min(70vw,520px);height:clamp(16px,2.4vw,26px);border-radius:50%;opacity:0;
+  border:1px solid rgba(0,165,217,.3); background:radial-gradient(closest-side,rgba(0,165,217,.1),transparent)}
+#s-cool.project .emitter{opacity:1;transition:opacity .5s ease}
+#s-cool.project .holo-text{animation:holoOn 1.5s var(--ease-out) .35s forwards}
+@keyframes holoOn{0%{opacity:0;transform:scaleY(.02)}100%{opacity:1;transform:scaleY(1)}}
+
+#s-exit{background:radial-gradient(circle at 50% 50%, #e6f4f9 0%, #f4f9fb 45%, var(--bg) 80%);overflow:hidden;display:grid;place-items:center}
+.exit-copy{position:relative;text-align:center;padding:0 4vw}
+/* Exit title: the old version animated `letter-spacing`, which re-runs layout + text shaping + a full
+   blur re-raster EVERY frame (and snaps glyphs to whole pixels → the mid-animation stutter).
+   Now the layout is fixed at the final spacing; each letter starts pushed outward by a JS-measured
+   offset (--dx) and slides home with a transform, while the word block fades/un-blurs/scales as ONE
+   composited layer. Only transform / opacity / filter animate → GPU-only, sub-pixel smooth. */
+.exit-text{font-weight:800;font-size:clamp(40px,10vw,170px);line-height:1;color:var(--turq);
+  letter-spacing:.06em;padding-left:.06em;opacity:0;filter:blur(12px);transform:scale(1.18) translateZ(0);
+  will-change:transform,opacity,filter;backface-visibility:hidden;text-wrap:balance}
+.exit-text .w{display:inline-block;white-space:nowrap}
+.exit-text .xc{display:inline-block;transform:translate3d(var(--dx,0px),0,0);will-change:transform;backface-visibility:hidden}
+.exit-copy .tagline{margin-top:clamp(14px,2.4vh,28px);font-weight:600;font-style:italic;font-size:clamp(15px,1.8vw,24px);letter-spacing:.06em;color:var(--petrol);
+  opacity:0;transform:translate3d(0,14px,0);will-change:transform,opacity;backface-visibility:hidden}
+#s-exit.say .exit-text{animation:exitIn 2.2s cubic-bezier(.22,1,.36,1) forwards}
+#s-exit.say .exit-text .xc{animation:xcIn 2.2s cubic-bezier(.22,1,.36,1) forwards}
+#s-exit.say .tagline{animation:tagIn 1.5s cubic-bezier(.22,1,.36,1) 1.15s forwards}
+@keyframes exitIn{
+  0%{opacity:0;filter:blur(12px);transform:scale(1.18) translateZ(0)}
+  40%{opacity:1}
+  65%{filter:blur(0)}
+  100%{opacity:1;filter:blur(0);transform:scale(1) translateZ(0)}}
+@keyframes xcIn{to{transform:translate3d(0,0,0)}}
+@keyframes tagIn{to{opacity:1;transform:translate3d(0,0,0)}}
+
+/* =========================================================
+   SCENE 7 — THE LINEUP (product showcase)
+   ========================================================= */
+#s-lineup{background:var(--bg);overflow:hidden}
+/* .lineup carries the backdrop AND the slow camera push, so the products' multiply blend
+   (which removes their white photo backgrounds) blends with this gradient, not with nothing */
+.lineup{position:absolute;inset:-3%;--u:min(1vh,.62vw);
+  background:radial-gradient(ellipse 58% 52% at 50% 53%,#dff1f8 0%,#eef7fb 48%,var(--bg) 100%);
+  will-change:transform}
+#s-lineup.play .lineup{animation:lpush 9s linear forwards}
+@keyframes lpush{from{transform:scale(1)}to{transform:scale(1.045)}}
+
+.prod{position:absolute;margin:0;left:calc(var(--x) * 1%);top:calc(var(--y) * 1%);
+  height:calc(var(--h) * var(--u));aspect-ratio:var(--cw) / var(--ch);
+  mix-blend-mode:multiply;opacity:0;
+  transform:translate(-50%,-50%) translate(var(--ox,0px),var(--oy,0px)) scale(.92);
+  will-change:transform,opacity;backface-visibility:hidden}
+/* crop window */
+.pimg{position:absolute;inset:0;overflow:hidden;clip-path:inset(0)}
+.pimg img{position:absolute;max-width:none;height:auto;
+  width:calc(var(--iw) / var(--cw) * 100%);
+  left:calc(var(--cl) / var(--cw) * -100%);
+  top:calc(var(--ct) / var(--ch) * -100%)}
+/* soft contact shadow on the floor */
+.prod::after{content:'';position:absolute;left:4%;right:4%;bottom:-4%;height:9%;z-index:-1;border-radius:50%;
+  background:radial-gradient(closest-side,rgba(0,40,60,.3),rgba(0,40,60,0))}
+
+/* positions (landscape): E-Air centre stage, two tall units above, two compact units below */
+.hero {--x:50;--y:53;--h:40;z-index:2}
+.p-ga {--x:20;--y:38;--h:30;--ox:-5vw;--oy:-1vh;--dl:1.15s}
+.p-ngp{--x:80;--y:38;--h:34;--ox:5vw;--oy:-1vh;--dl:1.5s}
+.p-gvs{--x:20;--y:71;--h:16;--ox:-5vw;--oy:1.5vh;--dl:1.85s}
+.p-fx {--x:80;--y:71;--h:26;--ox:5vw;--oy:1.5vh;--dl:2.2s}
+@media (max-aspect-ratio:4/5){
+  .lineup{--u:min(1.85vw,.9vh)}
+  .hero {--y:51;--h:26}
+  .p-ga {--x:27;--y:29;--h:26}
+  .p-ngp{--x:73;--y:29;--h:28}
+  .p-gvs{--x:28;--y:72;--h:13}
+  .p-fx {--x:72;--y:72;--h:21}
+}
+
+/* centrepiece: no extra floor shadow (the photo has its own), a turquoise halo behind it instead */
+.hero::after{display:none}
+.hero::before{content:'';position:absolute;inset:-28% -16%;z-index:-1;border-radius:50%;opacity:0;transform:scale(.7);
+  background:radial-gradient(closest-side,rgba(0,165,217,.26),rgba(0,165,217,.08) 55%,rgba(0,165,217,0) 72%)}
+
+/* sequential reveal: E-Air first, then the others one by one (stagger via --dl) */
+#s-lineup.reveal .hero{animation:heroIn 1.9s cubic-bezier(.22,1,.36,1) forwards,heroFloat 5s ease-in-out 1.9s infinite alternate}
+#s-lineup.reveal .hero::before{animation:haloIn 2.6s cubic-bezier(.22,1,.36,1) .25s forwards}
+#s-lineup.reveal .prod:not(.hero){animation:prodIn 1.5s cubic-bezier(.22,1,.36,1) var(--dl) forwards}
+@keyframes heroIn{
+  0%{opacity:0;transform:translate(-50%,-50%) translateY(4%) scale(.86)}
+  100%{opacity:1;transform:translate(-50%,-50%) scale(1)}}
+@keyframes heroFloat{
+  from{opacity:1;transform:translate(-50%,-50%) scale(1)}
+  to{opacity:1;transform:translate(-50%,-50%) translateY(-1.2%) scale(1.012)}}
+@keyframes haloIn{to{opacity:1;transform:scale(1)}}
+@keyframes prodIn{
+  0%{opacity:0;transform:translate(-50%,-50%) translate(var(--ox,0px),var(--oy,0px)) scale(.92)}
+  100%{opacity:1;transform:translate(-50%,-50%) scale(1)}}
+
+/* sits at --tt, but never lower than just above the bottom bar (.lineup starts 3vh above the viewport) */
+.lineup-title{position:absolute;left:50%;top:min(var(--tt,79%),calc(100% - 3vh - max(var(--bar),60px) - 34px));
+  white-space:nowrap;opacity:0;transform:translate(-50%,14px)}
+.lineup-title::before{transform:scaleX(0);transform-origin:100% 50%}
+.lineup-title::after{transform:scaleX(0);transform-origin:0% 50%}
+@media (max-aspect-ratio:4/5){ .lineup-title{--tt:84%} }
+/* phones held sideways: lift the whole composition so the lower row clears the bottom bar */
+@media (max-height:520px) and (min-aspect-ratio:4/5){
+  .hero {--y:48}
+  .p-ga,.p-ngp{--y:33}
+  .p-gvs,.p-fx{--y:66}
+  .lineup-title{--tt:74%}
+}
+#s-lineup.reveal .lineup-title{animation:titleIn 1.2s cubic-bezier(.22,1,.36,1) 2.9s forwards}
+#s-lineup.reveal .lineup-title::before,#s-lineup.reveal .lineup-title::after{animation:ruleIn 1s var(--ease-out) 3.3s forwards}
+@keyframes titleIn{to{opacity:1;transform:translate(-50%,0)}}
+
+/* =========================================================
+   SCENE 7 — END CARD
+   ========================================================= */
+#s-end{display:grid;place-items:center;padding:calc(var(--bar) + 20px) 16px calc(max(var(--bar), 60px) + 16px);
+  background:radial-gradient(ellipse 80% 70% at 50% 45%, #f4f9fb, var(--bg) 72%)}
+.card-float{animation:float 7s ease-in-out infinite alternate;width:min(94vw,900px)}
+@keyframes float{from{transform:translateY(-6px)}to{transform:translateY(6px)}}
+.card{position:relative;width:100%;max-height:calc(100dvh - var(--bar) - max(var(--bar), 60px) - 44px);overflow:hidden;text-align:center;
+  padding:clamp(32px,6.4vh,76px) clamp(22px,6.5vw,88px);border-radius:30px;
+  background: linear-gradient(160deg, rgba(255,255,255,0.95), rgba(245,250,255,0.9));
+  border:1px solid rgba(0,165,217,.2);
+  box-shadow: 0 30px 80px rgba(0,0,0,0.1), 0 0 40px rgba(0,165,217,0.05);
+  backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
+.card .corner{position:absolute;width:22px;height:22px;border:1.5px solid var(--turq);opacity:.8}
+.card .c2,.card .c3{border-color:var(--amber);opacity:.75}   /* diagonal amber pair = the oil-amber thread from the machine ride */
+.end-inv .eyebrow::before{background:linear-gradient(90deg,transparent,var(--amber))}
+.end-inv .eyebrow::after{background:linear-gradient(90deg,var(--amber),transparent)}
+.card .c1{left:12px;top:12px;border-right:0;border-bottom:0;border-top-left-radius:8px}
+.card .c2{right:12px;top:12px;border-left:0;border-bottom:0;border-top-right-radius:8px}
+.card .c3{left:12px;bottom:12px;border-right:0;border-top:0;border-bottom-left-radius:8px}
+.card .c4{right:12px;bottom:12px;border-left:0;border-top:0;border-bottom-right-radius:8px}
+
+.rv{clip-path:inset(-30% 100% -30% -5%);filter:brightness(2.2)}
+#s-end.sweeping .rv{animation:rv 1.7s var(--ease-cine) forwards,rvLum 2.4s ease-out forwards;animation-delay:calc(var(--d) * 1ms)}
+@keyframes rv{to{clip-path:inset(-30% -5% -30% -5%)}}
+@keyframes rvLum{to{filter:brightness(1)}}
+
+/* logo row: CATE (left) | Atlas Copco (right) */
+.logos{display:flex;align-items:center;justify-content:center;gap:clamp(14px,3vw,40px)}
+.logos .cate{flex:0 1 420px;min-width:0;aspect-ratio:1690/340;overflow:hidden}
+.logos .cate img{width:118.34%;max-width:none;margin-left:-6.2%;margin-top:-17.75%; mix-blend-mode: multiply; filter: contrast(1.1);}
+.logos .ac{flex:0 0 auto;display:flex;align-items:center}
+.logos .ac img{height:clamp(30px,min(7vh,9vw),68px);width:auto; mix-blend-mode: multiply;}
+.logos .divider{flex:0 0 1px;align-self:stretch;min-height:clamp(40px,8vh,80px);
+  background:linear-gradient(to bottom,transparent,rgba(0,165,217,.75) 20%,rgba(0,75,102,.55) 50%,rgba(0,165,217,.75) 80%,transparent)}
+.end-inv{margin-top:clamp(20px,3.8vh,40px)}
+.when{margin-top:clamp(12px,2.2vh,20px);font-family:'Barlow Condensed';font-weight:600;font-size:clamp(21px,3.6vw,36px);letter-spacing:.09em;color:var(--petrol)}
+.when .bar{color:var(--amber);margin:0 .4em}
+.where{margin-top:6px;font-weight:600;font-size:clamp(15px,2.2vw,22px);letter-spacing:.06em;color:var(--ice)}
+/* "For Location" map link — sits between the venue name and the Hall/Booth pill */
+.loc-row{margin-top:clamp(6px,1.2vh,10px)}
+.loc{position:relative;display:inline-flex;align-items:center;gap:.45em;padding:.3em .2em;
+  font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:clamp(14px,1.7vw,18px);letter-spacing:.2em;text-transform:uppercase;
+  color:var(--turq-hi);text-decoration:none;cursor:pointer;pointer-events:auto;-webkit-user-select:none;user-select:none;
+  transition:color .3s ease}
+.loc .pin{font-size:1.05em;line-height:1;letter-spacing:0;display:inline-block;transition:transform .35s var(--ease-out)}
+.loc .loc-txt{position:relative;padding-bottom:2px}
+.loc .loc-txt::after{content:'';position:absolute;left:0;right:.2em;bottom:0;height:1px;background:currentColor;
+  transform:scaleX(0);transform-origin:0 50%;transition:transform .4s var(--ease-out)}
+.loc:hover,.loc:focus-visible{color:var(--petrol);outline:none}
+.loc:hover .loc-txt::after,.loc:focus-visible .loc-txt::after{transform:scaleX(1)}
+.loc:hover .pin,.loc:focus-visible .pin{transform:translateY(-2px)}
+.loc:focus-visible{box-shadow:0 0 0 2px rgba(0,165,217,.35);border-radius:6px}
+/* "📍 For Location  ·  📅 Add to Calendar" share one row; they stack on very narrow phones */
+.loc-row{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;column-gap:clamp(10px,2vw,22px)}
+.loc-sep{width:5px;height:5px;border-radius:50%;background:var(--amber)}
+@media (max-width:400px){ .loc-sep{display:none} .loc-row{row-gap:0} }
+/* personal greeting (?to=…) */
+.dear{margin-top:clamp(16px,3vh,30px);font-style:italic;font-weight:600;font-size:clamp(17px,2.4vw,24px);letter-spacing:.04em;color:var(--petrol)}
+.dear[hidden]{display:none}
+.dear + .end-inv{margin-top:clamp(6px,1.2vh,12px)}
+.booth{position:relative;display:inline-flex;align-items:center;gap:.6em;margin-top:clamp(12px,2.4vh,24px);overflow:hidden;
+  padding:.42em 1.1em;border-radius:999px;font-weight:800;font-size:clamp(18px,4.6vw,40px);letter-spacing:.08em;color:var(--petrol);white-space:nowrap;
+  background:linear-gradient(180deg,rgba(0,165,217,.1),rgba(0,165,217,.02));
+  border:1px solid rgba(0,165,217,.4);box-shadow:0 0 20px rgba(0,165,217,.1)}
+.booth i{width:2px;height:1em;border-radius:1px;background:linear-gradient(#ffc35a,var(--amber))}
+.sign{margin-top:clamp(16px,3vh,28px);font-style:italic;font-weight:600;font-size:clamp(17px,2.6vw,25px);letter-spacing:.05em;color:var(--petrol)}
+
+/* Phones held sideways (very short viewports): everything on the card scales with the viewport HEIGHT,
+   so the whole card — logos down to "See you at Air Tech." — fits above the bottom bar without clipping. */
+@media (max-height:520px){
+  .card{padding:3.6vh clamp(18px,5vw,56px);border-radius:22px}
+  .card .corner{width:16px;height:16px}
+  .card .c1,.card .c2{top:8px}.card .c3,.card .c4{bottom:8px}
+  .card .c1,.card .c3{left:8px}.card .c2,.card .c4{right:8px}
+  .logos{gap:clamp(10px,2.4vw,28px)}
+  .logos .cate{flex:0 1 calc(15vh * 1690 / 340)}
+  .logos .ac img{height:9vh}
+  .logos .divider{min-height:12vh}
+  .end-inv{margin-top:2.2vh}
+  .end-inv .eyebrow{font-size:3.2vh}
+  .when{margin-top:1.4vh;font-size:5.6vh}
+  .where{margin-top:2px;font-size:3.8vh}
+  .loc-row{margin-top:0}
+  .loc{font-size:3.4vh;padding:.25em .2em}
+  .dear{margin-top:1.6vh;font-size:3.6vh}
+  .dear + .end-inv{margin-top:.6vh}
+  .booth{margin-top:2vh;font-size:5vh}
+  .sign{margin-top:1.8vh;font-size:3.8vh}
+}
+
+/* =========================================================
+   HUD (Website-Style Split Header - LARGE LOGOS)
+   ========================================================= */
+#fx{position:fixed;inset:0;width:100%;height:100%;z-index:40;pointer-events:none}
+.bars::before,.bars::after{content:'';position:fixed;left:0;right:0;height:var(--bar);background:#fff;z-index:55;pointer-events:none}
+.bars::before{top:0}.bars::after{bottom:0}
+
+.hud{position:fixed;left:0;right:0;z-index:60;display:flex;align-items:center;pointer-events:none;
+  font-family:'Barlow Condensed',sans-serif;font-weight:600;letter-spacing:.32em;text-transform:uppercase;font-size:clamp(10px,1vw,12px);
+  color:var(--petrol);opacity:0;transition:opacity 1.6s ease}
+body.hud-on .hud{opacity:1}
+
+.hud.top {
+  top: 0;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px clamp(15px, 4vw, 50px);
+  padding-top: max(env(safe-area-inset-top), 4px);
+  height: auto;
+  background: transparent;
+  border-bottom: 1px solid rgba(0, 165, 217, 0.15); /* ممكن تمسحه لو مش عايز الخط اللي تحت */
+}
+
+/* لوجو CATE - حجم أكبر بكثير */
+.logo-cate {
+  height: clamp(130px, 15vh, 220px); /* زيادة ملحوظة في الحجم */
+  width: auto;
+  max-width: 55vw;
+  mix-blend-mode: multiply;
+  object-fit: contain;
+  /* سحب الحواف لتقليص الشريط الأبيض لو الصورة فيها مساحة فارغة */
+  margin-top: -15px; 
+  margin-bottom: -15px;
+}
+
+/* لوجو Atlas - متناسق مع المساحة */
+.logo-atlas {
+  height: clamp(40px, 5vh, 70px);
+  width: auto;
+  max-width: 35vw;
+  mix-blend-mode: multiply;
+  object-fit: contain;
+}
+
+/* Bottom Footer Design */
+.hud.bot {
+  bottom: 0;
+  gap: 20px;
+  padding: 0 clamp(16px, 3vw, 40px);
+  height: max(var(--bar), 60px);
+  padding-bottom: env(safe-area-inset-bottom);
+}
+.chapter{display:flex;gap:.9em;white-space:nowrap;min-width:0}
+.chapter .num{color:var(--turq)}
+.chapter .name{animation:chap .9s var(--ease-out)}
+@keyframes chap{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.progress{position:relative;flex:1;height:1px;background:rgba(0,75,102,.1);min-width:40px}
+.progress .fill{position:absolute;left:0;top:0;bottom:0;width:0;background:linear-gradient(90deg,var(--turq),var(--petrol));}
+.progress .tick{position:absolute;top:-2px;width:1px;height:5px;background:rgba(0,75,102,.2)}
+.ctrl{display:flex;gap:10px}
+.btn{pointer-events:auto;cursor:pointer;font:inherit;letter-spacing:.28em;text-transform:uppercase;color:var(--petrol);
+  padding:.75em 1.3em;border-radius:999px;border:1px solid rgba(0,165,217,.3);background:rgba(255,255,255,.6);
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);transition:background .3s,border-color .3s,color .3s}
+.btn:hover,.btn:focus-visible{background:rgba(0,165,217,.1);border-color:var(--turq);outline:none}
+.btn{white-space:nowrap}
+/* phones: the chapter name ran under the progress line — keep just the number */
+@media (max-width:420px){ .chapter .name{display:none} }
+/* very narrow phones: tighter bar — keep the chapter number, drop its name, slimmer buttons on one line */
+@media (max-width:359px){
+  .hud.bot{gap:10px;padding-left:10px;padding-right:10px}
+  .chapter .name{display:none}
+  .ctrl{gap:6px}
+  .btn{padding:.7em .85em;letter-spacing:.16em}
+  .sound{gap:.45em}
+}
+/* sound toggle: three-bar equaliser that dances while music plays */
+.sound{display:inline-flex;align-items:center;gap:.7em}
+.sound .eq{display:inline-flex;align-items:flex-end;gap:2px;height:11px}
+.sound .eq i{width:2px;height:30%;background:var(--turq);border-radius:1px;transition:height .4s ease}
+.sound.on .eq i{animation:eq 1s ease-in-out infinite alternate}
+.sound.on .eq i:nth-child(2){animation-duration:.7s;animation-delay:-.3s}
+.sound.on .eq i:nth-child(3){animation-duration:.85s;animation-delay:-.6s}
+@keyframes eq{from{height:20%}to{height:100%}}
+.sound.missing{display:none}
+#replay{display:none;}
+body.ended #replay{display:inline-block;animation:chap 1s var(--ease-out)}
+body.ended #skip{display:none}
+
+#loader{position:fixed;inset:0;z-index:80;display:grid;place-items:center;background:#fff;transition:opacity .8s ease}
+#loader.gone{opacity:0;pointer-events:none}
+#loader span{font-family:'Barlow Condensed',sans-serif;letter-spacing:.6em;font-size:11px;color:var(--turq);animation:blink 1.2s ease-in-out infinite alternate}
+@keyframes blink{from{opacity:.25}to{opacity:1}}
+</style>
+</head>
+<body>
+
+<main id="film" aria-label="Animated invitation: CATE and Atlas Copco at Air Tech">
+
+  <!-- ============ STAGE: GA 75 ============ -->
+  <section class="scene" id="s-stage" aria-hidden="true">
+    <div class="tilt">
+      <div class="stage" id="stage">
+        <div class="spot"></div>
+        <div class="floor"></div>
+        <div class="mgroup">
+          <img class="reflect" src="buy-new (1).webp" alt="">
+          <img class="machine" src="buy-new (1).webp" alt="Atlas Copco GA 75 compressor">
+          <!-- cavity revealed behind the doors -->
+          <div class="interior">
+            <div class="in-rays"></div>
+            <svg viewBox="0 0 200 360" preserveAspectRatio="none" aria-hidden="true">
+              <path class="tun" d="M0 0L62 112M200 0L138 112M0 360L62 248M200 360L138 248"/>
+              <rect class="tun" x="62" y="112" width="76" height="136"/>
+              <path class="tun" d="M31 56H169V304H31Z M15.5 28H184.5V332H15.5Z M46.5 84H153.5V276H46.5Z"/>
+            </svg>
+          </div>
+          <!-- 3D door leaves: photo front, drawn steel back, edge thickness -->
+          <div class="door l">
+            <div class="face front"><img src="buy-new (1).webp" alt=""></div>
+            <div class="face back"></div>
+            <div class="edge"></div>
+          </div>
+          <div class="door r">
+            <div class="face front"><img src="buy-new (1).webp" alt=""></div>
+            <div class="face back"></div>
+            <div class="edge"></div>
+          </div>
+        </div>
+        <div class="glow"><div class="burst"></div></div>
+        <svg class="seam" viewBox="0 0 1920 1920" preserveAspectRatio="none">
+          <path class="edge" pathLength="1" d="M770 409 L441 405 L441 1551 L770 1554"/>
+          <path class="edge" pathLength="1" d="M770 409 L1083 413 L1083 1557 L770 1554"/>
+          <path class="mid"  pathLength="1" d="M770 409 L770 1554"/>
+        </svg>
+        <div class="shaft"></div>
+      </div>
+    </div>
+
+  </section>
+
+  <section class="scene" id="s-hook">
+    <p class="hook-line" id="hookLine">Ever wondered what powers your industry?</p>
+  </section>
+
+  <!-- ============ SCENE 2a · INSIDE THE MACHINE — fly-through behind the doors (gates built by Inside.build) ============ -->
+  <section class="scene" id="s-inside" aria-hidden="true">
+    <div class="core"></div>
+    <div class="tunnel" id="tunnel"></div>
+    <div class="wash"></div>
+    <div class="in-cap" id="inCap"><span class="n"></span><span class="t"></span></div>
+  </section>
+
+  <section class="scene" id="s-into">
+    <div class="inv-glow" id="invGlow" aria-hidden="true">YOU ARE INVITED</div>
+  </section>
+
+  <!-- ============ SCENE 3 · THE HEART — interlocking screw rotors ============ -->
+  <section class="scene" id="s-rotors">
+    <div class="rig" aria-hidden="true">
+      <svg viewBox="0 0 1600 530">
+        <defs>
+          <!-- convex male lobe -->
+          <linearGradient id="lobeM" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0" stop-color="#2c3e47"/>
+            <stop offset=".18" stop-color="#7d95a1"/>
+            <stop offset=".34" stop-color="#eef6f9"/>
+            <stop offset=".44" stop-color="#b9cbd3"/>
+            <stop offset=".72" stop-color="#5f7783"/>
+            <stop offset="1" stop-color="#2c3e47"/>
+          </linearGradient>
+          <!-- concave female flute -->
+          <linearGradient id="lobeF" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0" stop-color="#e3edf1"/>
+            <stop offset=".12" stop-color="#a9bcc5"/>
+            <stop offset=".5" stop-color="#3a505b"/>
+            <stop offset=".82" stop-color="#8ea4af"/>
+            <stop offset="1" stop-color="#e3edf1"/>
+          </linearGradient>
+          <!-- cylinder shading -->
+          <linearGradient id="cyl" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#012231" stop-opacity=".75"/>
+            <stop offset=".16" stop-color="#012231" stop-opacity=".12"/>
+            <stop offset=".32" stop-color="#ffffff" stop-opacity=".38"/>
+            <stop offset=".5" stop-color="#ffffff" stop-opacity="0"/>
+            <stop offset=".8" stop-color="#012231" stop-opacity=".3"/>
+            <stop offset="1" stop-color="#012231" stop-opacity=".8"/>
+          </linearGradient>
+          <radialGradient id="pocketG">
+            <stop offset="0" stop-color="#ffffff"/>
+            <stop offset=".45" stop-color="#7fe0fb" stop-opacity=".9"/>
+            <stop offset="1" stop-color="#00A5D9" stop-opacity="0"/>
+          </radialGradient>
+          <clipPath id="clipM"><rect width="1600" height="260" rx="22"/></clipPath>
+          <clipPath id="clipF"><rect width="1600" height="210" rx="18"/></clipPath>
+        </defs>
+
+        <path class="bore" d="M0 16H1600M0 514H1600"/>
+
+        <!-- MALE rotor (convex lobes, right-hand helix) -->
+        <g transform="translate(0 30)">
+          <g clip-path="url(#clipM)">
+            <rect width="1600" height="260" fill="#4a606b"/>
+            <g class="lobes"><g transform="skewX(-35)">
+              <rect x="-360" width="180" height="260" fill="url(#lobeM)"/>
+              <rect x="-180" width="180" height="260" fill="url(#lobeM)"/>
+              <rect x="0"    width="180" height="260" fill="url(#lobeM)"/>
+              <rect x="180"  width="180" height="260" fill="url(#lobeM)"/>
+              <rect x="360"  width="180" height="260" fill="url(#lobeM)"/>
+              <rect x="540"  width="180" height="260" fill="url(#lobeM)"/>
+              <rect x="720"  width="180" height="260" fill="url(#lobeM)"/>
+              <rect x="900"  width="180" height="260" fill="url(#lobeM)"/>
+              <rect x="1080" width="180" height="260" fill="url(#lobeM)"/>
+              <rect x="1260" width="180" height="260" fill="url(#lobeM)"/>
+              <rect x="1440" width="180" height="260" fill="url(#lobeM)"/>
+              <rect x="1620" width="180" height="260" fill="url(#lobeM)"/>
+              <rect x="1800" width="180" height="260" fill="url(#lobeM)"/>
+              <rect x="1980" width="180" height="260" fill="url(#lobeM)"/>
+              <rect x="2160" width="180" height="260" fill="url(#lobeM)"/>
+            </g></g>
+            <rect width="1600" height="260" fill="url(#cyl)"/>
+          </g>
+          <rect class="rotor-edge" width="1600" height="260" rx="22"/>
+        </g>
+
+        <!-- FEMALE rotor (concave flutes, left-hand helix) -->
+        <g transform="translate(0 290)">
+          <g clip-path="url(#clipF)">
+            <rect width="1600" height="210" fill="#6f8792"/>
+            <g class="lobes"><g transform="skewX(35)">
+              <rect x="-360" width="180" height="210" fill="url(#lobeF)"/>
+              <rect x="-180" width="180" height="210" fill="url(#lobeF)"/>
+              <rect x="0"    width="180" height="210" fill="url(#lobeF)"/>
+              <rect x="180"  width="180" height="210" fill="url(#lobeF)"/>
+              <rect x="360"  width="180" height="210" fill="url(#lobeF)"/>
+              <rect x="540"  width="180" height="210" fill="url(#lobeF)"/>
+              <rect x="720"  width="180" height="210" fill="url(#lobeF)"/>
+              <rect x="900"  width="180" height="210" fill="url(#lobeF)"/>
+              <rect x="1080" width="180" height="210" fill="url(#lobeF)"/>
+              <rect x="1260" width="180" height="210" fill="url(#lobeF)"/>
+              <rect x="1440" width="180" height="210" fill="url(#lobeF)"/>
+              <rect x="1620" width="180" height="210" fill="url(#lobeF)"/>
+              <rect x="1800" width="180" height="210" fill="url(#lobeF)"/>
+              <rect x="1980" width="180" height="210" fill="url(#lobeF)"/>
+              <rect x="2160" width="180" height="210" fill="url(#lobeF)"/>
+            </g></g>
+            <rect width="1600" height="210" fill="url(#cyl)"/>
+          </g>
+          <rect class="rotor-edge" width="1600" height="210" rx="18"/>
+        </g>
+
+        <!-- mesh line + air pockets being squeezed toward discharge -->
+        <line class="mesh-glow" x1="0" y1="290" x2="1600" y2="290"/>
+        <line class="mesh-line" x1="0" y1="290" x2="1600" y2="290"/>
+        <ellipse class="pocket" cx="0" cy="290" rx="70" ry="18" style="--pd:0s"/>
+        <ellipse class="pocket" cx="0" cy="290" rx="70" ry="18" style="--pd:-0.9s"/>
+        <ellipse class="pocket" cx="0" cy="290" rx="70" ry="18" style="--pd:-1.8s"/>
+        <ellipse class="pocket" cx="0" cy="290" rx="70" ry="18" style="--pd:-2.7s"/>
+      </svg>
+    </div>
+    <div class="date-wrap">
+      <div class="panel glass date-panel">
+        <span class="eyebrow">Save the date</span><br>
+        <div class="burn" id="burn"><span class="burn-text">DECEMBER 17 – 20</span><span class="laser" id="laser"></span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SCENE 4 · PRECISION — meshed gear train + belt drive ============
+       Every gear has module 10 (pitch radius = 5 × teeth), centre distance = sum of pitch radii,
+       start angle solved so teeth sit in gaps, and spin period = 0.25 s × teeth so they stay meshed. -->
+  <section class="scene" id="s-gears">
+    <svg id="gearsvg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <defs>
+        <!-- machined steel face: bright centre, satin mid, darker chamfered rim (rotation-invariant) -->
+        <radialGradient id="gBody">
+          <stop offset="0" stop-color="#f6f9fb"/>
+          <stop offset=".45" stop-color="#dfe7eb"/>
+          <stop offset=".78" stop-color="#c3d0d6"/>
+          <stop offset=".93" stop-color="#a6b8c0"/>
+          <stop offset="1" stop-color="#7b919c"/>
+        </radialGradient>
+        <!-- concentric lathe/turning marks -->
+        <radialGradient id="gLathe" r=".03" spreadMethod="repeat">
+          <stop offset="0" stop-color="#ffffff" stop-opacity="0"/>
+          <stop offset=".45" stop-color="#ffffff" stop-opacity=".22"/>
+          <stop offset=".55" stop-color="#0a2430" stop-opacity=".07"/>
+          <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+        </radialGradient>
+        <!-- lightening holes: you see the shadowed back plate through them, with a dark machined wall -->
+        <radialGradient id="gHole">
+          <stop offset="0" stop-color="#b9c8cf"/>
+          <stop offset="1" stop-color="#9fb2bb"/>
+        </radialGradient>
+        <radialGradient id="gHoleWall">
+          <stop offset="0" stop-color="#22343d"/>
+          <stop offset="1" stop-color="#3e5561"/>
+        </radialGradient>
+        <!-- ambient occlusion around the hub boss -->
+        <radialGradient id="gAO">
+          <stop offset=".7" stop-color="#05202d" stop-opacity=".45"/>
+          <stop offset="1" stop-color="#05202d" stop-opacity="0"/>
+        </radialGradient>
+        <radialGradient id="gHub">
+          <stop offset="0" stop-color="#a9bcc5"/>
+          <stop offset=".6" stop-color="#7a909b"/>
+          <stop offset="1" stop-color="#455b66"/>
+        </radialGradient>
+        <radialGradient id="gAxle">
+          <stop offset="0" stop-color="#b8eefc"/>
+          <stop offset=".45" stop-color="#22b7e4"/>
+          <stop offset="1" stop-color="#006a8c"/>
+        </radialGradient>
+        <!-- ===== static (non-rotating) light & shadow — key light from the top-left ===== -->
+        <radialGradient id="gShadow">
+          <stop offset="0" stop-color="#03202e" stop-opacity=".42"/>
+          <stop offset=".8" stop-color="#03202e" stop-opacity=".32"/>
+          <stop offset=".9" stop-color="#03202e" stop-opacity=".12"/>
+          <stop offset="1" stop-color="#03202e" stop-opacity="0"/>
+        </radialGradient>
+        <linearGradient id="gSheen" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#ffffff" stop-opacity=".62"/>
+          <stop offset=".38" stop-color="#ffffff" stop-opacity=".08"/>
+          <stop offset=".6" stop-color="#062736" stop-opacity="0"/>
+          <stop offset="1" stop-color="#062736" stop-opacity=".34"/>
+        </linearGradient>
+        <linearGradient id="gSheenT" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#ffffff" stop-opacity=".55"/>
+          <stop offset=".42" stop-color="#ffffff" stop-opacity="0"/>
+          <stop offset=".58" stop-color="#062736" stop-opacity="0"/>
+          <stop offset="1" stop-color="#062736" stop-opacity=".42"/>
+        </linearGradient>
+        <!-- raised edge: lit top-left, shaded bottom-right -->
+        <linearGradient id="gBevel" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#ffffff" stop-opacity=".95"/>
+          <stop offset=".45" stop-color="#ffffff" stop-opacity=".15"/>
+          <stop offset=".55" stop-color="#062736" stop-opacity=".08"/>
+          <stop offset="1" stop-color="#062736" stop-opacity=".6"/>
+        </linearGradient>
+        <!-- recessed edge (inner shadow): shaded top-left, lit bottom-right -->
+        <linearGradient id="gBevelIn" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#062736" stop-opacity=".55"/>
+          <stop offset=".45" stop-color="#062736" stop-opacity=".08"/>
+          <stop offset=".55" stop-color="#ffffff" stop-opacity=".12"/>
+          <stop offset="1" stop-color="#ffffff" stop-opacity=".85"/>
+        </linearGradient>
+        <radialGradient id="gHubSheen" cx=".5" cy=".5" fx=".32" fy=".28" r=".62">
+          <stop offset="0" stop-color="#ffffff" stop-opacity=".8"/>
+          <stop offset=".35" stop-color="#ffffff" stop-opacity=".18"/>
+          <stop offset=".7" stop-color="#062736" stop-opacity="0"/>
+          <stop offset="1" stop-color="#062736" stop-opacity=".4"/>
+        </radialGradient>
+        <!-- soft specular hotspot on the face -->
+        <radialGradient id="gSpec" cx=".33" cy=".3" r=".38">
+          <stop offset="0" stop-color="#ffffff" stop-opacity=".55"/>
+          <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+        </radialGradient>
+        <linearGradient id="gBelt" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#4c626d"/>
+          <stop offset=".5" stop-color="#2a3d47"/>
+          <stop offset="1" stop-color="#16252d"/>
+        </linearGradient>
+      </defs>
+
+      <!-- cast shadows of every gear land here, under the whole train (filled by Gears.enhance) -->
+      <g id="gearShadows"></g>
+
+      <!-- belt drive -->
+      <path class="belt-shadow" transform="translate(6 10)" d="M110 770H560A45 45 0 0 1 560 860H110A45 45 0 0 1 110 770Z"/>
+      <path class="belt-base" d="M110 770H560A45 45 0 0 1 560 860H110A45 45 0 0 1 110 770Z"/>
+      <path class="belt-run" pathLength="1176" d="M110 770H560A45 45 0 0 1 560 860H110A45 45 0 0 1 110 770Z"/>
+      <g transform="translate(110 815)"><g class="gear" style="--d:6s"><circle class="g-body" r="45"/><circle class="g-ring" r="36"/><path class="g-win" pathLength="3" stroke-width="16" d="M22 0A22 22 0 1 1-22 0A22 22 0 1 1 22 0"/><circle class="g-hub" r="10"/><circle class="g-axle" r="4"/></g></g>
+      <g transform="translate(560 815)"><g class="gear" style="--d:6s"><circle class="g-body" r="45"/><circle class="g-ring" r="36"/><path class="g-win" pathLength="3" stroke-width="16" d="M22 0A22 22 0 1 1-22 0A22 22 0 1 1 22 0"/><circle class="g-hub" r="10"/><circle class="g-axle" r="4"/></g></g>
+
+      <!-- G11 · 40T -->
+      <g transform="translate(69.94 276.65) rotate(48.4)"><g class="gear ccw" style="--d:10s">
+        <path class="g-teeth" d="M200 0A200 200 0 1 1-200 0A200 200 0 1 1 200 0"/><circle class="g-body" r="190.5"/>
+        <path class="g-win" pathLength="6" stroke-width="72" d="M110 0A110 110 0 1 1-110 0A110 110 0 1 1 110 0"/>
+        <circle class="g-ring" r="156"/><circle class="g-hub" r="48"/><circle class="g-axle" r="18"/><rect class="g-key" x="-3" y="-45" width="6" height="18" rx="1.5"/></g></g>
+      <!-- G7 · 14T -->
+      <g transform="translate(243.49 483.48) rotate(57.14)"><g class="gear" style="--d:3.5s">
+        <path class="g-teeth" d="M70 0A70 70 0 1 1-70 0A70 70 0 1 1 70 0"/><circle class="g-body" r="60.5"/>
+        <path class="g-bolts" pathLength="8" stroke-width="6" d="M38.5 0A38.5 38.5 0 1 1-38.5 0A38.5 38.5 0 1 1 38.5 0"/>
+        <circle class="g-ring" r="54.6"/><circle class="g-hub" r="16.8"/><circle class="g-axle" r="6"/><rect class="g-key" x="-2.5" y="-15" width="5" height="8" rx="1.5"/></g></g>
+      <!-- G6 · 20T -->
+      <g transform="translate(328.49 630.7) rotate(315.8)"><g class="gear ccw" style="--d:5s">
+        <path class="g-teeth" d="M100 0A100 100 0 1 1-100 0A100 100 0 1 1 100 0"/><circle class="g-body" r="90.5"/>
+        <path class="g-win" pathLength="6" stroke-width="36" d="M55 0A55 55 0 1 1-55 0A55 55 0 1 1 55 0"/>
+        <circle class="g-ring" r="78"/><circle class="g-hub" r="24"/><circle class="g-axle" r="9"/><rect class="g-key" x="-3" y="-22" width="6" height="10" rx="1.5"/></g></g>
+      <!-- G1 · 30T (driver) -->
+      <g transform="translate(520 470)"><g class="gear" style="--d:7.5s">
+        <path class="g-teeth" d="M150 0A150 150 0 1 1-150 0A150 150 0 1 1 150 0"/><circle class="g-body" r="140.5"/>
+        <path class="g-win" pathLength="6" stroke-width="54" d="M82.5 0A82.5 82.5 0 1 1-82.5 0A82.5 82.5 0 1 1 82.5 0"/>
+        <circle class="g-ring" r="117"/><circle class="g-hub" r="36"/><circle class="g-axle" r="13"/><rect class="g-key" x="-3" y="-34" width="6" height="14" rx="1.5"/></g></g>
+      <!-- G2 · 16T -->
+      <g transform="translate(708.4 338.08) rotate(126.63)"><g class="gear ccw" style="--d:4s">
+        <path class="g-teeth" d="M80 0A80 80 0 1 1-80 0A80 80 0 1 1 80 0"/><circle class="g-body" r="70.5"/>
+        <path class="g-bolts" pathLength="8" stroke-width="7" d="M44 0A44 44 0 1 1-44 0A44 44 0 1 1 44 0"/>
+        <circle class="g-ring" r="62.4"/><circle class="g-hub" r="19.2"/><circle class="g-axle" r="7"/><rect class="g-key" x="-2.5" y="-17" width="5" height="9" rx="1.5"/></g></g>
+      <!-- G3 · 24T -->
+      <g transform="translate(896.34 406.48) rotate(190.42)"><g class="gear" style="--d:6s">
+        <path class="g-teeth" d="M120 0A120 120 0 1 1-120 0A120 120 0 1 1 120 0"/><circle class="g-body" r="110.5"/>
+        <path class="g-win" pathLength="6" stroke-width="43.2" d="M66 0A66 66 0 1 1-66 0A66 66 0 1 1 66 0"/>
+        <circle class="g-ring" r="93.6"/><circle class="g-hub" r="28.8"/><circle class="g-axle" r="10.8"/><rect class="g-key" x="-3" y="-27" width="6" height="12" rx="1.5"/></g></g>
+      <!-- G4 · 12T -->
+      <g transform="translate(986.34 250.6) rotate(102.17)"><g class="gear ccw" style="--d:3s">
+        <path class="g-teeth" d="M60 0A60 60 0 1 1-60 0A60 60 0 1 1 60 0"/><circle class="g-body" r="50.5"/>
+        <path class="g-bolts" pathLength="8" stroke-width="6" d="M33 0A33 33 0 1 1-33 0A33 33 0 1 1 33 0"/>
+        <circle class="g-ring" r="46.8"/><circle class="g-hub" r="14.4"/><circle class="g-axle" r="5.5"/><rect class="g-key" x="-2" y="-13" width="4" height="7" rx="1.5"/></g></g>
+      <!-- G5 · 36T (gold) -->
+      <g transform="translate(1156.15 556.48) rotate(204.06)"><g class="gear ccw" style="--d:9s">
+        <path class="g-teeth gold" d="M180 0A180 180 0 1 1-180 0A180 180 0 1 1 180 0"/><circle class="g-body" r="170.5"/>
+        <path class="g-win" pathLength="6" stroke-width="64.8" d="M99 0A99 99 0 1 1-99 0A99 99 0 1 1 99 0"/>
+        <circle class="g-ring" r="140.4"/><circle class="g-hub" r="43.2"/><circle class="g-axle" r="16"/><rect class="g-key" x="-3" y="-41" width="6" height="17" rx="1.5"/></g></g>
+      <!-- G9 · 22T -->
+      <g transform="translate(1378.3 370.07) rotate(135)"><g class="gear" style="--d:5.5s">
+        <path class="g-teeth" d="M110 0A110 110 0 1 1-110 0A110 110 0 1 1 110 0"/><circle class="g-body" r="100.5"/>
+        <path class="g-win" pathLength="6" stroke-width="39.6" d="M60.5 0A60.5 60.5 0 1 1-60.5 0A60.5 60.5 0 1 1 60.5 0"/>
+        <circle class="g-ring" r="85.8"/><circle class="g-hub" r="26.4"/><circle class="g-axle" r="10"/><rect class="g-key" x="-3" y="-24" width="6" height="11" rx="1.5"/></g></g>
+      <!-- G8 · 18T -->
+      <g transform="translate(1203.04 822.38) rotate(253.89)"><g class="gear" style="--d:4.5s">
+        <path class="g-teeth" d="M90 0A90 90 0 1 1-90 0A90 90 0 1 1 90 0"/><circle class="g-body" r="80.5"/>
+        <path class="g-bolts" pathLength="8" stroke-width="7" d="M49.5 0A49.5 49.5 0 1 1-49.5 0A49.5 49.5 0 1 1 49.5 0"/>
+        <circle class="g-ring" r="70.2"/><circle class="g-hub" r="21.6"/><circle class="g-axle" r="8"/><rect class="g-key" x="-2.5" y="-20" width="5" height="9" rx="1.5"/></g></g>
+      <!-- G10 · 44T -->
+      <g transform="translate(1508.33 876.21) rotate(189.23)"><g class="gear ccw" style="--d:11s">
+        <path class="g-teeth" d="M220 0A220 220 0 1 1-220 0A220 220 0 1 1 220 0"/><circle class="g-body" r="210.5"/>
+        <path class="g-win" pathLength="6" stroke-width="79.2" d="M121 0A121 121 0 1 1-121 0A121 121 0 1 1 121 0"/>
+        <circle class="g-ring" r="171.6"/><circle class="g-hub" r="52.8"/><circle class="g-axle" r="19"/><rect class="g-key" x="-3" y="-50" width="6" height="20" rx="1.5"/></g></g>
+    </svg>
+    <div class="time-wrap">
+      <div class="panel glass time-panel">
+        <span class="eyebrow">Opening hours</span>
+        <div class="flips" id="flips" aria-label="9:00 AM to 7:00 PM"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="scene" id="s-cool">
+    <div class="holo">
+      <span class="eyebrow">The venue</span>
+      <div class="holo-text" data-text="EGYPT INTERNATIONAL&#10;EXHIBITIONS CENTER">EGYPT INTERNATIONAL
+EXHIBITIONS CENTER</div>
+      <div class="emitter"></div>
+    </div>
+  </section>
+
+  <section class="scene" id="s-exit">
+    <div class="exit-copy">
+      <h2 class="exit-text">POWERED BY AIR</h2>
+      <p class="tagline">Atlas Copco technology, delivered by CATE.</p>
+    </div>
+  </section>
+
+  <!-- ============ SCENE 7 · THE LINEUP — product showcase, E-Air centre stage ============
+       Every product sits in a .pimg crop box: --cl/--ct/--cw/--ch = crop rectangle in the source image's
+       pixels, --iw/--ih = source size. The box takes the crop's aspect ratio and the image is offset inside it,
+       so only that rectangle shows (clip-path + overflow). -->
+  <section class="scene" id="s-lineup" aria-label="Our product lineup">
+    <div class="lineup">
+      <figure class="prod p-ga" style="--cl:400;--ct:330;--cw:1070;--ch:1390;--iw:1920">
+        <div class="pimg"><img src="buy-new (1).webp" alt="Atlas Copco GA 75 screw compressor" decoding="async"></div>
+      </figure>
+      <figure class="prod p-ngp" style="--cl:233;--ct:48;--cw:124;--ch:294;--iw:600">
+        <!-- source shows five machines: the crop keeps ONLY the centre NGP 25 with its touch screen -->
+        <div class="pimg"><img src="NGP 25 - For web.jpeg" alt="Atlas Copco NGP 25 nitrogen generator" decoding="async"></div>
+      </figure>
+      <figure class="prod p-gvs" style="--cl:18;--ct:32;--cw:570;--ch:314;--iw:600">
+        <div class="pimg"><img src="GVS 220 A oil sealed vacuum pump - For web.png" alt="Atlas Copco GVS 220 A oil-sealed vacuum pump" decoding="async"></div>
+      </figure>
+      <figure class="prod p-fx" style="--cl:66;--ct:58;--cw:390;--ch:516;--iw:519">
+        <div class="pimg"><img src="FX 13  - For web.jpeg" alt="Atlas Copco FX 13 refrigerant air dryer" decoding="async"></div>
+      </figure>
+      <figure class="prod hero" style="--cl:120;--ct:500;--cw:1720;--ch:1080;--iw:1920">
+        <div class="pimg"><img src="E-Air (1).webp" alt="Atlas Copco E-Air electric portable compressor" decoding="async"></div>
+      </figure>
+      <span class="eyebrow lineup-title">Our solutions</span>
+    </div>
+  </section>
+
+  <section class="scene" id="s-end">
+    <div class="card-float">
+      <article class="card" id="card">
+        <span class="corner c1"></span><span class="corner c2"></span><span class="corner c3"></span><span class="corner c4"></span>
+        <div class="logos">
+          <div class="rv cate" style="--d:0"><img src="CATE.jpg" alt="CATE — Compressed Air Technology Egypt"></div>
+          <span class="rv divider" style="--d:250" aria-hidden="true"></span>
+          <div class="rv ac" style="--d:400"><img src="Atlas-Copco.png" alt="Atlas Copco"></div>
+        </div>
+        <!-- personal greeting: index.html?to=Eng.%20Ahmed%20Hassan → "Dear Eng. Ahmed Hassan," (hidden without ?to) -->
+        <div class="rv dear" id="dear" style="--d:600" hidden></div>
+        <div class="rv end-inv" style="--d:700"><span class="eyebrow">You are invited</span></div>
+        <div class="rv when" style="--d:900">DECEMBER 17 – 20<span class="bar">|</span>9:00 AM – 7:00 PM</div>
+        <div class="rv where" style="--d:1050">Egypt International Exhibitions Center</div>
+        <div class="rv loc-row" style="--d:1150">
+          <a class="loc" href="https://maps.app.goo.gl/4ehLESWXiw6kLj1z9" target="_blank" rel="noopener noreferrer"
+             aria-label="For Location — open Egypt International Exhibitions Center in Google Maps (new tab)">
+            <span class="pin" aria-hidden="true">📍</span><span class="loc-txt">For Location</span>
+          </a>
+          <span class="loc-sep" aria-hidden="true"></span>
+          <a class="loc cal" id="addCal" href="#" role="button" aria-label="Add Air Tech, December 17 to 20, to your calendar">
+            <span class="pin" aria-hidden="true">📅</span><span class="loc-txt">Add to Calendar</span>
+          </a>
+        </div>
+        <div class="rv" style="--d:1300"><div class="booth"><span>HALL 1</span><i></i><span>BOOTH 1D30</span></div></div>
+        <div class="rv sign" style="--d:1500">See you at Air Tech.</div>
+      </article>
+    </div>
+  </section>
+</main>
+
+<canvas id="fx" aria-hidden="true"></canvas>
+
+
+
+<footer class="hud bot">
+  <div class="chapter"><span class="num" id="chNum">00</span><span class="name" id="chName">Prologue</span></div>
+  <div class="progress" id="progress"><div class="fill" id="pfill"></div></div>
+  <div class="ctrl">
+    <button class="btn sound on" id="sound" type="button" aria-pressed="true" aria-label="Turn sound off"><span class="eq" aria-hidden="true"><i></i><i></i><i></i></span><span class="lbl">Sound</span></button>
+    <button class="btn" id="skip" type="button" aria-label="Skip to next scene">Skip ›</button>
+    <button class="btn" id="replay" type="button">↻ Replay</button>
+  </div>
+</footer>
+
+<div id="loader"><span>STEP INSIDE</span></div>
+
+<!-- Background score — PLACEHOLDER: drop your cinematic track at audio/cinematic-theme.mp3 (or change the src). -->
+<audio id="bgm" loop preload="auto" playsinline webkit-playsinline>
+  <source src="audio/cinematic-theme.mp3" type="audio/mpeg">
+</audio>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js" defer></script>
+<script>
+(() => {
+'use strict';
+
+const $  = (s, r = document) => r.querySelector(s);
+const rand = (a, b) => a + Math.random() * (b - a);
+const pick = a => a[(Math.random() * a.length) | 0];
+const shuffle = a => { for (let i = a.length - 1; i > 0; i--) { const j = (Math.random() * (i + 1)) | 0; [a[i], a[j]] = [a[j], a[i]]; } return a; };
+const QS = new URLSearchParams(location.search);
+const HOLD = QS.has('hold');   // review aid: ?scene=3&hold freezes on scene 3
+// Booth screen: index.html?booth → silent, no buttons/cursor, end card holds BOOTH_HOLD ms then the film restarts
+const BOOTH = QS.has('booth');
+const BOOTH_HOLD = Math.max(3, parseInt(QS.get('booth'), 10) || 15) * 1000;   // ?booth=20 → hold the end card 20 s
+
+const el = {
+  stageSec: $('#s-stage'), stage: $('#stage'), hook: $('#s-hook'), into: $('#s-into'), inside: $('#s-inside'), inCap: $('#inCap'),
+  rotors: $('#s-rotors'), gears: $('#s-gears'), cool: $('#s-cool'), exit: $('#s-exit'), lineup: $('#s-lineup'), end: $('#s-end'),
+  invGlow: $('#invGlow'), laser: $('#laser'), burn: $('#burn')
+};
+
+const E = { T: 0, tasks: [], idx: -1, t0: 0, last: 0 };
+const at = (ms, fn) => E.tasks.push({ at: E.T + ms, fn });
+function show(s){ s.className = 'scene'; void s.offsetWidth; s.classList.add('on', 'play'); }
+function ensure(s){ if (!s.classList.contains('on')) show(s); }
+function hide(s){ s.classList.remove('on'); at(1300, () => { if (!s.classList.contains('on')) s.className = 'scene'; }); }
+
+const FX = {
+  P: [], S: [], t: 0, mode: 'off', mix: ['t'], trail: 0, wc: null, want: { dust: 0, intake: 0, warp: 0, rise: 0 },
+  init(){
+    this.c = $('#fx'); this.ctx = this.c.getContext('2d');
+    const mk = rgb => {
+      const s = document.createElement('canvas'); s.width = s.height = 64;
+      const g = s.getContext('2d'), r = g.createRadialGradient(32, 32, 0, 32, 32, 32);
+      r.addColorStop(0, `rgba(${rgb},1)`); r.addColorStop(.18, `rgba(${rgb},.85)`);
+      r.addColorStop(.45, `rgba(${rgb},.2)`); r.addColorStop(1, `rgba(${rgb},0)`);
+      g.fillStyle = r; g.fillRect(0, 0, 64, 64); return s;
+    };
+    this.spr = { t: mk('0,165,217'), w: mk('0,75,102'), g: mk('201,162,75'), p: mk('0,165,217'), i: mk('225,248,255') };
+    this.col = { t: '0,165,217', w: '0,75,102', g: '201,162,75', p: '0,165,217', i: '225,248,255', o: '255,176,32' };   // o = oil amber (demo --m-power / oil)   // i = ice white (reads on the dark interior)
+    this.resize();
+    addEventListener('resize', () => { clearTimeout(this._rt); this._rt = setTimeout(() => this.resize(), 140); });
+  },
+  resize(){
+    const d = this.dpr = Math.min(devicePixelRatio || 1, 1.75);
+    this.W = innerWidth; this.H = innerHeight;
+    this.c.width = Math.round(this.W * d); this.c.height = Math.round(this.H * d);
+    this.ctx.setTransform(d, 0, 0, d, 0, 0); this.ctx.lineCap = 'round';
+    if (this.mode === 'text') this.toText(true);
+  },
+  k(){ return Math.max(.45, Math.min(1.35, this.W * this.H / (1440 * 900))); },
+  n(x){ return Math.max(1, Math.round(x * this.k())); },
+  reset(){
+    this.P.length = 0; this.S.length = 0; this.sparkOn = false; this.mode = 'off'; this.trail = 0; this.wc = null; this.wmix = null;
+    this.want = { dust: 0, intake: 0, warp: 0, rise: 0 };
+    this.ctx.clearRect(0, 0, this.W, this.H);
+  },
+  setMode(m, o = {}){
+    this.mode = m; this.want = { dust: 0, intake: 0, warp: 0, rise: 0 }; this.trail = 0;
+    if (o.mix) this.mix = o.mix;
+    if (m === 'dust')    { this.want.dust = this.n(o.count || 60); this.drift = o.drift || 'up'; }
+    if (m === 'intake')  { this.want.intake = this.n(260); this.want.dust = this.n(30); this.trail = .3; this.pt = o.point; }
+    if (m === 'warp')    { this.want.warp = this.n(640); this.trail = .36; this.ws = .00018; this.wsT = .00115; this.wmix = o.wmix || null;
+                           this.wc = o.center ? { x: o.center.x, y: o.center.y } : null; }   // streaks radiate from the doorway
+    if (m === 'rise')    { this.want.rise = this.n(90); this.want.dust = this.n(28); this.drift = 'up'; }
+    const cnt = {};
+    for (const p of this.P) {
+      if (p.dead || !(p.k in this.want)) continue;
+      cnt[p.k] = (cnt[p.k] || 0) + 1;
+      if (cnt[p.k] > this.want[p.k]) p.dead = true;
+    }
+  },
+  respawnWarp(p){
+    do { p.X = rand(-1, 1); p.Y = rand(-1, 1); } while (Math.hypot(p.X, p.Y) < .08);
+    p.Z = rand(.85, 1); p.px = null;
+  },
+  spawn(k){
+    const W = this.W, H = this.H, p = { k, a: 0, dead: false, ph: rand(0, 6.28) };
+    if (k === 'dust') {
+      p.x = rand(0, W); p.y = rand(0, H); p.r = rand(.6, 2) * (Math.random() < .1 ? 2 : 1);
+      p.vx = this.drift === 'x' ? rand(.006, .025) : rand(-.006, .006);
+      p.vy = this.drift === 'x' ? rand(-.004, .004) : rand(-.02, -.004);
+      p.ta = rand(.25, .8); p.f = rand(.001, .004); p.s = pick(this.mix);
+    } else if (k === 'intake') {
+      const a = rand(0, 6.283), d = Math.max(W, H) * rand(.5, .85);
+      p.x = this.pt.x + Math.cos(a) * d; p.y = this.pt.y + Math.sin(a) * d; p.vx = p.vy = 0;
+      p.r = rand(.7, 1.9); p.ta = rand(.45, .95); p.s = Math.random() < .3 ? 'w' : 't'; p.sw = rand(.25, .5) * (Math.random() < .5 ? 1 : -1);
+    } else if (k === 'warp') {
+      this.respawnWarp(p); p.Z = rand(.15, 1); p.r = rand(.6, 1.7); p.ta = rand(.5, 1); p.s = this.wmix ? pick(this.wmix) : Math.random() < .35 ? 'w' : 't'; p.vx = p.vy = 0;
+    } else if (k === 'rise') {
+      p.x = rand(0, W); p.y = H + rand(0, H * .6); p.vy = -rand(.015, .06); p.r = rand(1, 3); p.ta = rand(.2, .6); p.f = rand(.001, .003); p.s = Math.random() < .5 ? 'w' : 't';
+    }
+    this.P.push(p); return p;
+  },
+  free(x, y, vx, vy, o){
+    const life = o.life || 1000;
+    this.P.push(Object.assign({ k: 'free', x, y, vx, vy, r: 1.2, s: 't', drag: 1, acc: 1, streak: 0, g: 0, a0: 1 }, o, { life, max: life }));
+  },
+  dot(s, x, y, size, a){ if (a <= .004) return; this.ctx.globalAlpha = a > 1 ? 1 : a; this.ctx.drawImage(this.spr[s], x - size, y - size, size * 2, size * 2); },
+  line(s, x1, y1, x2, y2, w, a){
+    if (a <= .004) return; const c = this.ctx; c.globalAlpha = 1;
+    c.strokeStyle = `rgba(${this.col[s]},${a > 1 ? 1 : a})`; c.lineWidth = w;
+    c.beginPath(); c.moveTo(x1, y1); c.lineTo(x2, y2); c.stroke();
+  },
+
+  sample(lines){
+    const W = this.W, H = this.H, o = document.createElement('canvas'); o.width = W; o.height = H;
+    const g = o.getContext('2d', { willReadFrequently: true });
+    const font = fs => `800 ${fs}px "Exo 2", sans-serif`, LS = .06, hasLS = 'letterSpacing' in g;
+    g.font = font(100); if (hasLS) g.letterSpacing = '6px';
+    const wMax = Math.max(...lines.map(l => g.measureText(l).width));
+    const fs = Math.min(100 * (W * .86) / wMax, H * (lines.length > 1 ? .16 : .2));
+    g.font = font(fs); if (hasLS) g.letterSpacing = (fs * LS) + 'px';
+    g.fillStyle = '#000'; g.textAlign = 'center'; g.textBaseline = 'middle';
+    const lh = fs * 1.05, total = lh * lines.length, top = H / 2 - total / 2;
+    lines.forEach((l, i) => g.fillText(l, W / 2 + (hasLS ? fs * LS / 2 : 0), top + lh * (i + .5)));
+    const y0 = Math.max(0, (top - fs * .3) | 0), y1 = Math.min(H, (top + total + fs * .3) | 0);
+    const d = g.getImageData(0, 0, W, H).data, cap = this.n(2600) + 300;
+    let step = Math.max(2, Math.round(fs / 28)), pts;
+    for (;;) {
+      pts = [];
+      for (let y = y0; y < y1; y += step) for (let x = 0; x < W; x += step)
+        if (d[(y * W + x) * 4 + 3] > 140) pts.push([x + rand(-.4, .4), y + rand(-.4, .4)]);
+      if (pts.length <= cap || step > 9) break; step++;
+    }
+    this.step = step;
+    return { pts, fs, lines };
+  },
+  toText(retarget){
+    const lines = this.W / this.H < .95 ? ['YOU ARE', 'INVITED'] : ['YOU ARE INVITED'];
+    const { pts, fs } = this.sample(lines);
+    this.mode = 'text'; this.want = { dust: this.n(24), intake: 0, warp: 0, rise: 0 };
+    if (!retarget) { this.trail = .5; at(1600, () => { if (this.mode === 'text') this.trail = 0; }); }
+    const movers = this.P.filter(p => (p.k === 'warp' || p.k === 'text') && !p.dead);
+    shuffle(pts);
+    const W = this.W, H = this.H;
+    for (let i = 0; i < pts.length; i++) {
+      let p = movers[i];
+      if (!p) { p = { x: rand(-.15, 1.15) * W, y: rand(-.15, 1.15) * H, vx: 0, vy: 0, a: 0, dead: false, ph: rand(0, 6.28) }; this.P.push(p); }
+      p.k = 'text'; p.tx = pts[i][0]; p.ty = pts[i][1]; p.dl = retarget ? 0 : rand(0, 450); p.e = rand(.003, .0075);
+      p.ta = rand(.65, 1); p.r = this.step * rand(.32, .46); p.s = Math.random() < .7 ? 'w' : 't';
+      if (p.x === undefined) { p.x = W / 2; p.y = H / 2; }
+    }
+    for (let i = pts.length; i < movers.length; i++) {
+      const p = movers[i]; Object.assign(p, { k: 'free', life: rand(300, 700), max: 700, drag: .95, acc: 1, streak: 0, g: 0, a0: p.a || .6 });
+    }
+    el.invGlow.innerHTML = lines.join('<br>'); el.invGlow.style.setProperty('--fs', fs + 'px');
+  },
+  scatter(){
+    for (const p of this.P) if (p.k === 'text') {
+      Object.assign(p, { k: 'free', vx: rand(-.12, .12), vy: rand(-.22, .02), life: rand(700, 1500), max: 1500, drag: .99, acc: 1, streak: 0, g: 0, a0: p.a });
+    }
+  },
+
+  frame(dt){
+    const ctx = this.ctx, W = this.W, H = this.H; this.t += dt;
+    if (this.mode === 'warp') {
+      this.ws += (this.wsT - this.ws) * Math.min(1, dt * .0016);
+      if (this.wc) { const k = Math.min(1, dt * .0009); this.wc.x += (W / 2 - this.wc.x) * k; this.wc.y += (H / 2 - this.wc.y) * k; }
+    }
+
+    const c = { dust: 0, intake: 0, warp: 0, rise: 0 };
+    for (const p of this.P) if (!p.dead && p.k in c) c[p.k]++;
+    for (const k in this.want) {
+      const need = this.want[k] - c[k], cap = k === 'warp' ? 60 : k === 'intake' ? 8 : 4;
+      for (let i = 0; i < Math.min(need, cap); i++) this.spawn(k);
+    }
+
+    if (this.sparkOn) {
+      const r = el.laser.getBoundingClientRect(), b = el.burn.getBoundingClientRect();
+      const x = r.left + r.width / 2, y = b.top + b.height / 2;
+      for (let i = 0, n = this.n(6); i < n; i++)
+        this.S.push({ x: x + rand(-2, 2), y: y + rand(-b.height * .35, b.height * .35), vx: rand(-.32, .22), vy: rand(-.45, .05), life: rand(300, 850), max: 850, hot: Math.random() < .75 });
+    }
+
+    // Motion trails: ERASE the previous frame gradually so the canvas stays transparent.
+    // (Painting white over it, as before, slowly covered the machine and the opening doors.)
+    if (this.trail > 0) {
+      ctx.globalCompositeOperation = 'destination-out'; ctx.globalAlpha = 1;
+      ctx.fillStyle = `rgba(0,0,0,${Math.min(1, this.trail * dt / 16.7)})`; ctx.fillRect(0, 0, W, H);
+    } else ctx.clearRect(0, 0, W, H);
+    ctx.globalCompositeOperation = 'source-over';
+
+    const P = this.P;
+    for (let i = P.length - 1; i >= 0; i--) if (!this.upd(P[i], dt)) { P[i] = P[P.length - 1]; P.pop(); }
+
+    const S = this.S;
+    for (let i = S.length - 1; i >= 0; i--) {
+      const s = S[i]; s.life -= dt;
+      if (s.life <= 0) { S[i] = S[S.length - 1]; S.pop(); continue; }
+      s.vy += .0011 * dt; s.x += s.vx * dt; s.y += s.vy * dt;
+      const k = s.life / s.max;
+      ctx.globalAlpha = 1;
+      ctx.strokeStyle = s.hot ? `rgba(255,100,0,${k})` : `rgba(0,165,217,${k})`;
+      ctx.lineWidth = 1.3; ctx.beginPath(); ctx.moveTo(s.x - s.vx * 16, s.y - s.vy * 16); ctx.lineTo(s.x, s.y); ctx.stroke();
+    }
+    ctx.globalAlpha = 1;
+  },
+
+  upd(p, dt){
+    const W = this.W, H = this.H;
+    if (p.k !== 'free') {
+      p.a += ((p.dead ? 0 : p.ta) - p.a) * Math.min(1, dt * .003);
+      if (p.dead && p.a < .01) return false;
+    }
+    switch (p.k) {
+      case 'dust': {
+        p.x += p.vx * dt; p.y += p.vy * dt;
+        if (p.y < -12) p.y = H + 12; else if (p.y > H + 12) p.y = -12;
+        if (p.x < -12) p.x = W + 12; else if (p.x > W + 12) p.x = -12;
+        this.dot(p.s, p.x, p.y, p.r * 3.2, p.a * (.55 + .45 * Math.sin(this.t * p.f + p.ph)));
+        return true;
+      }
+      case 'intake': {
+        const dx = this.pt.x - p.x, dy = this.pt.y - p.y, d = Math.hypot(dx, dy) || 1, ac = .0011 * dt;
+        p.vx += (dx / d) * ac - (dy / d) * ac * p.sw; p.vy += (dy / d) * ac + (dx / d) * ac * p.sw;
+        const dr = Math.pow(.982, dt / 16.7); p.vx *= dr; p.vy *= dr;
+        p.x += p.vx * dt; p.y += p.vy * dt;
+        if (d < 16) {
+          if (p.dead) return false;
+          const a = rand(0, 6.283), r = Math.max(W, H) * rand(.5, .85);
+          p.x = this.pt.x + Math.cos(a) * r; p.y = this.pt.y + Math.sin(a) * r; p.vx = p.vy = 0; p.a = 0; return true;
+        }
+        const fade = Math.min(1, d / 60);
+        this.line(p.s, p.x - p.vx * 22, p.y - p.vy * 22, p.x, p.y, p.r, p.a * fade);
+        return true;
+      }
+      case 'warp': {
+        const f = Math.min(W, H) * .32, cx = this.wc ? this.wc.x : W / 2, cy = this.wc ? this.wc.y : H / 2;
+        p.Z -= this.ws * dt;
+        if (p.Z <= .02) { if (p.dead) return false; this.respawnWarp(p); }
+        const sx = cx + p.X / p.Z * f, sy = cy + p.Y / p.Z * f;
+        if (sx < -60 || sx > W + 60 || sy < -60 || sy > H + 60) { if (p.dead) return false; this.respawnWarp(p); return true; }
+        if (p.px != null) {
+          this.line(p.s, p.px, p.py, sx, sy, p.r * (1.6 - p.Z), p.a * (1.1 - p.Z));
+          p.vx = (sx - p.px) / dt; p.vy = (sy - p.py) / dt;
+        }
+        p.px = p.x = sx; p.py = p.y = sy;
+        return true;
+      }
+      case 'text': {
+        if (p.dl > 0) { p.dl -= dt; p.x += p.vx * dt; p.y += p.vy * dt; const dr = Math.pow(.93, dt / 16.7); p.vx *= dr; p.vy *= dr; }
+        else { const e = Math.min(1, p.e * dt); p.x += (p.tx - p.x) * e; p.y += (p.ty - p.y) * e; }
+        const j = Math.sin(this.t * .003 + p.ph) * .2;
+        this.dot(p.s, p.x + j, p.y, p.r * 2.1, p.a * (.8 + .2 * Math.sin(this.t * .006 + p.ph)));
+        return true;
+      }
+      case 'rise': {
+        p.y += p.vy * dt; p.x += Math.sin(this.t * p.f + p.ph) * .18;
+        if (p.y < -20) { if (p.dead) return false; p.y = H + 20; p.x = rand(0, W); }
+        this.dot(p.s, p.x, p.y, p.r * 2.8, p.a);
+        return true;
+      }
+      case 'free': {
+        p.life -= dt; if (p.life <= 0) return false;
+        const m = Math.pow(p.drag * p.acc, dt / 16.7); p.vx *= m; p.vy *= m; p.vy += p.g * dt;
+        p.x += p.vx * dt; p.y += p.vy * dt;
+        const a = Math.min(1, p.life / p.max * 1.6) * p.a0;
+        if (p.streak) this.line(p.s, p.x - p.vx * p.streak * 3, p.y - p.vy * p.streak * 3, p.x, p.y, p.r, a);
+        else this.dot(p.s, p.x, p.y, p.r * 2.8, a);
+        return true;
+      }
+    }
+    return false;
+  }
+};
+
+const Flip = {
+  cells: [],
+  build(){
+    const host = $('#flips'); host.innerHTML = ''; this.cells = [];
+    const groups = ['9:00 AM', '–', '7:00 PM'];
+    groups.forEach(gtxt => {
+      if (gtxt === '–') { const s = document.createElement('span'); s.className = 'fdash'; s.textContent = '–'; host.appendChild(s); return; }
+      const g = document.createElement('div'); g.className = 'fgroup';
+      for (const ch of gtxt) {
+        if (ch === ':') { const s = document.createElement('span'); s.className = 'fsep'; s.textContent = ':'; g.appendChild(s); continue; }
+        if (ch === ' ') { const s = document.createElement('span'); s.className = 'fgap'; g.appendChild(s); continue; }
+        const f = document.createElement('span'); f.className = 'flap' + (/[A-Z]/.test(ch) ? ' ampm' : '');
+        f.innerHTML = '<span class="half top"><b></b></span><span class="half bot"><b></b></span><span class="leaf"><span class="face front"><b></b></span><span class="face back"><b></b></span></span>';
+        const [top, bot, front, back] = f.querySelectorAll('b');
+        this.cells.push({ f, top, bot, front, back, leaf: f.querySelector('.leaf'), cur: ' ', target: ch, pool: /\d/.test(ch) ? '0123456789' : 'ABCDEFGHKMNPRSTX' });
+        g.appendChild(f);
+      }
+      host.appendChild(g);
+    });
+  },
+  reset(){ this.build(); },
+  flip(c, ch){
+    if (c.an) c.an.finish();
+    const old = c.cur; if (old === ch) return; c.cur = ch;
+    c.top.textContent = ch; c.back.textContent = ch; c.front.textContent = old; c.bot.textContent = old;
+    c.an = c.leaf.animate([{ transform: 'rotateX(0deg)' }, { transform: 'rotateX(-180deg)' }], { duration: 120, easing: 'cubic-bezier(.5,0,.9,.6)' });
+    c.an.onfinish = () => { c.bot.textContent = c.cur; c.front.textContent = c.cur; c.an = null; };
+  },
+  run(){
+    this.cells.forEach((c, i) => {
+      const n = 7 + i * 2;
+      for (let j = 0; j < n; j++) at(i * 45 + j * 78, () => this.flip(c, pick(c.pool)));
+      at(i * 45 + n * 78, () => { this.flip(c, c.target); c.f.classList.add('set'); });
+    });
+  }
+};
+
+function splitChars(node){
+  const words = node.textContent.trim().split(/\s+/); node.textContent = ''; let i = 0;
+  words.forEach((w, wi) => {
+    const ws = document.createElement('span'); ws.className = 'w' + (wi >= 3 ? ' hl' : '');
+    for (const ch of w) { const s = document.createElement('span'); s.className = 'ch'; s.textContent = ch; s.style.setProperty('--i', i++); ws.appendChild(s); }
+    node.appendChild(ws); if (wi < words.length - 1) node.appendChild(document.createTextNode(' '));
+  });
+}
+// centre of the doorway on screen — also the camera's zoom origin, so it stays put while we push in
+function doorCenter(){ const r = el.stage.getBoundingClientRect(); return { x: r.left + r.width * .397, y: r.top + r.height * .51 }; }
+
+// ---- Scene 2a: the ride inside the machine ------------------------------------------
+// Builds the fly-through gates once (all in a 1000×1000 box, centre kept clear for the camera path).
+// Gears reuse the Scene 4 gear classes + gradients, and are meshed properly: module 10
+// (pitch radius = 5 × teeth), centre distance = sum of pitch radii, and the driven gear's start
+// angle is solved so its gap sits exactly on the driver's tooth at the contact point.
+const Inside = {
+  CAPS: [['01', 'Air intake filter'], ['02', 'Motor & drive gears'], ['03', 'Screw element']],
+  build(){
+    const host = $('#tunnel'); if (!host) return;
+    const f1 = n => +n.toFixed(1);
+    const arc = R => `M${R} 0A${R} ${R} 0 1 1-${R} 0A${R} ${R} 0 1 1 ${R} 0`;
+    const svg = body => `<svg viewBox="0 0 1000 1000" aria-hidden="true">${body}</svg>`;
+    const gate = (dl, r0, r1, body) => `<div class="gate" style="--dl:${dl}s;--r0:${r0}deg;--r1:${r1}deg">${svg(body)}</div>`;
+
+    // shared paint (kept in a zero-size SVG that is never display:none, so the references always resolve)
+    const defs = `<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+      <!-- colours follow the GA 3D demo: steel #d2d9de, grey #9aa7b1, cast #5c6a74, frame #2b3339,
+           motor blue #2c6fb3 / #1d4f86, filter media #eadfbd, oil amber #e8a12a -->
+      <linearGradient id="inRib" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#d2d9de"/><stop offset=".3" stop-color="#9aa7b1"/><stop offset=".7" stop-color="#5c6a74"/><stop offset="1" stop-color="#2b3339"/></linearGradient>
+      <radialGradient id="inBolt" cx=".35" cy=".3" r=".75">
+        <stop offset="0" stop-color="#ffffff"/><stop offset=".45" stop-color="#c5ced5"/><stop offset="1" stop-color="#2b3339"/></radialGradient>
+      <linearGradient id="inPleatG" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0" stop-color="#a8955d"/><stop offset=".45" stop-color="#f6eccc"/><stop offset=".62" stop-color="#e2d4a8"/><stop offset="1" stop-color="#8f7d48"/></linearGradient>
+      <pattern id="inPleat" width="16" height="10" patternUnits="userSpaceOnUse"><rect width="16" height="10" fill="url(#inPleatG)"/></pattern>
+      <linearGradient id="inCylH" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0" stop-color="#091119" stop-opacity=".6"/><stop offset=".22" stop-color="#091119" stop-opacity="0"/>
+        <stop offset=".36" stop-color="#ffffff" stop-opacity=".35"/><stop offset=".52" stop-color="#ffffff" stop-opacity="0"/>
+        <stop offset=".78" stop-color="#091119" stop-opacity=".15"/><stop offset="1" stop-color="#091119" stop-opacity=".65"/></linearGradient>
+      <!-- filter housing end caps: motor-blue paint -->
+      <linearGradient id="inCapG" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0" stop-color="#143c66"/><stop offset=".32" stop-color="#6aa3dc"/><stop offset=".6" stop-color="#2c6fb3"/><stop offset="1" stop-color="#12345a"/></linearGradient>
+      <linearGradient id="inGrille" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#a6b4be"/><stop offset=".5" stop-color="#7f8f9b"/><stop offset="1" stop-color="#56636d"/></linearGradient>
+      <pattern id="inSlot" width="26" height="90" patternUnits="userSpaceOnUse">
+        <rect x="7" y="12" width="12" height="66" rx="6" fill="#0b141c"/><rect x="7" y="12" width="12" height="4" rx="2" fill="#000" opacity=".35"/></pattern>
+      <radialGradient id="inAxle"><stop offset="0" stop-color="#cfe3f7"/><stop offset=".45" stop-color="#2c6fb3"/><stop offset="1" stop-color="#0f2f52"/></radialGradient>
+      <radialGradient id="inHub"><stop offset="0" stop-color="#c5ced5"/><stop offset=".6" stop-color="#7c8992"/><stop offset="1" stop-color="#3a454c"/></radialGradient>
+      <linearGradient id="inMotor" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#1d4f86"/><stop offset=".22" stop-color="#6aa3dc"/><stop offset=".45" stop-color="#2c6fb3"/><stop offset="1" stop-color="#12345a"/></linearGradient>
+      <radialGradient id="inBell" cx=".4" cy=".35" r=".7"><stop offset="0" stop-color="#5f9ad6"/><stop offset=".6" stop-color="#2c6fb3"/><stop offset="1" stop-color="#1d4f86"/></radialGradient>
+      <linearGradient id="inCast" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#8a98a2"/><stop offset=".4" stop-color="#5c6a74"/><stop offset="1" stop-color="#2b3339"/></linearGradient>
+      <radialGradient id="inLed"><stop offset="0" stop-color="#eafff1"/><stop offset=".25" stop-color="#22c55e"/><stop offset="1" stop-color="#22c55e" stop-opacity="0"/></radialGradient>
+      <clipPath id="inClipM"><rect x="-200" width="1400" height="170" rx="20"/></clipPath>
+      <clipPath id="inClipF"><rect x="-200" width="1400" height="140" rx="18"/></clipPath>
+    </defs></svg>`;
+
+    // bulkhead: a steel frame we pass through, with a ring of bolts
+    const bolts = [];
+    for (let i = 0; i < 8; i++) { const t = 150 + i * 100; bolts.push([t, 60], [t, 940], [60, t], [940, t]); }
+    const rr = (a, b, r) => `M${a + r} ${a}H${b - r}A${r} ${r} 0 0 1 ${b} ${a + r}V${b - r}A${r} ${r} 0 0 1 ${b - r} ${b}H${a + r}A${r} ${r} 0 0 1 ${a} ${b - r}V${a + r}A${r} ${r} 0 0 1 ${a + r} ${a}Z`;
+    const rib = (dl, r0, r1) => gate(dl, r0, r1,
+      `<path fill="url(#inRib)" fill-rule="evenodd" d="${rr(20, 980, 50)} ${rr(100, 900, 46)}"/>` +
+      `<path fill="none" stroke="#ffffff" stroke-opacity=".35" stroke-width="3" d="${rr(100, 900, 46)}"/>` +
+      `<path fill="none" stroke="#00141e" stroke-opacity=".6" stroke-width="3" d="${rr(20, 980, 50)}"/>` +
+      bolts.map(([x, y]) => `<circle cx="${x}" cy="${y}" r="9" fill="url(#inBolt)"/>`).join(''));
+
+    // 01 · intake filters: two pleated cartridges either side + the intake grille above
+    const cartridge = x => `<g transform="translate(${x} 0)">
+      <rect y="200" width="190" height="600" fill="url(#inPleat)"/><rect y="200" width="190" height="600" fill="url(#inCylH)"/>
+      <rect x="-12" y="166" width="214" height="42" rx="9" fill="url(#inCapG)"/><rect x="-12" y="792" width="214" height="42" rx="9" fill="url(#inCapG)"/>
+      <circle cx="95" cy="187" r="11" fill="url(#inBolt)"/><circle cx="95" cy="813" r="11" fill="url(#inBolt)"/>
+      <circle class="ig-led" cx="168" cy="187" r="22" fill="url(#inLed)"/><circle cx="168" cy="187" r="5" fill="#eafff1"/></g>`;   // ΔP indicator: green = clean
+    const filter = gate(.15, 3, -4,
+      cartridge(40) + cartridge(770) +
+      `<rect x="300" y="36" width="400" height="96" rx="12" fill="url(#inGrille)"/><rect x="314" y="40" width="372" height="90" fill="url(#inSlot)"/>`);
+
+    // 02 · drive gears in every corner
+    const G = [];
+    const root = (x, y, T, R, o = {}) => { const g = Object.assign({ x, y, T, R, ccw: false }, o); G.push(g); return g; };
+    const mesh = (A, T, phi, o = {}) => {
+      const rA = 5 * A.T, rB = 5 * T, pA = 360 / A.T;
+      let d = ((phi - A.R - 360 / rA) % pA + pA) % pA; if (d > pA / 2) d -= pA;   // driver tooth offset at the contact
+      const s = d * Math.PI / 180 * rA, a = phi * Math.PI / 180, D = rA + rB;
+      const g = Object.assign({ x: A.x + D * Math.cos(a), y: A.y + D * Math.sin(a), T, ccw: !A.ccw,
+        R: phi + 180 + s / rB * 180 / Math.PI - 360 / rB - 180 / T }, o);
+      G.push(g); return g;
+    };
+    const tl = root(130, 150, 30, 4); mesh(tl, 18, 15); mesh(tl, 14, 100);
+    const tr = root(900, 120, 24, 0); mesh(tr, 12, 150);
+    const br = root(880, 860, 34, 2, { gold: true }); mesh(br, 20, -95); mesh(br, 16, 180);
+    const bl = root(110, 880, 26, 0); mesh(bl, 14, -40);
+    const gearEl = g => {
+      const r = 5 * g.T, body = r - 9.5, gold = g.gold ? ' gold' : '', w = f1(r * .55), hub = f1(r * .24);
+      const holes = g.T >= 20
+        ? `<path class="ig-win" pathLength="6" stroke-width="${f1(r * .36)}" d="${arc(w)}"/>`
+        : `<path class="g-bolts" pathLength="8" stroke-width="${f1(r * .09)}" d="${arc(w)}"/>`;
+      return `<g transform="translate(${f1(g.x)} ${f1(g.y)}) rotate(${g.R.toFixed(2)})"><g class="ig-gear${g.ccw ? ' ccw' : ''}" style="--d:${(g.T * .05).toFixed(2)}s">
+        <path class="g-teeth-edge${gold}" d="${arc(r)}"/><path class="g-teeth${gold}" d="${arc(r)}"/><path class="g-teeth-face${gold}" d="${arc(r)}"/>
+        <circle class="g-body" r="${body}"/><circle class="g-lathe" r="${body}"/>${holes}
+        <circle class="g-ring" r="${f1(r * .78)}"/><circle class="g-ao" r="${f1(hub * 1.45)}"/><circle class="g-hub" r="${hub}"/>
+        <circle class="g-axle" r="${f1(r * .09)}"/><rect class="g-key" x="-3" y="${f1(-hub * .95)}" width="6" height="${f1(hub * .4)}" rx="1.5"/></g></g>`;
+    };
+    // static key light (never rotates with the gear)
+    const gearLit = g => { const r = 5 * g.T, body = r - 9.5, hub = f1(r * .24);
+      return `<g transform="translate(${f1(g.x)} ${f1(g.y)})"><circle class="g-sheen-t" r="${r}"/><circle class="g-sheen" r="${body}"/>
+        <circle class="g-spec" r="${body}"/><circle class="g-bevel" r="${body - 1.5}" stroke-width="3"/><circle class="g-hub-sheen" r="${hub}"/></g>`; };
+    const gearShadow = g => { const tip = 5 * g.T + 9, off = 4 + tip * .05;
+      return `<circle class="g-shadow" cx="${f1(g.x + off)}" cy="${f1(g.y + off * 1.6)}" r="${f1(tip * 1.1)}"/>`; };
+    // the motor that drives them (demo blue): cooling fan spinning behind its guard on the left,
+    // finned motor body with IE5 / VSD plate + blinking run LED on the right, striped coupling sliding by
+    const fan = (() => {
+      let blades = '';
+      for (let i = 0; i < 7; i++) blades += `<path transform="rotate(${(i * 360 / 7).toFixed(1)})" d="M0-20C24-30 30-62 14-86C2-80-8-50 0-20Z" fill="#d2d9de" stroke="#5c6a74" stroke-width="1.5"/>`;
+      let guard = '';
+      for (let r = 30; r <= 90; r += 15) guard += `<circle r="${r}" fill="none" stroke="#9aa7b1" stroke-opacity=".55" stroke-width="2"/>`;
+      return `<g transform="translate(60 590)"><circle r="118" fill="url(#inBell)" stroke="#0f2f52" stroke-width="3"/>
+        <circle r="96" fill="#0b141c"/><g class="ig-spin" style="--d:.32s">${blades}<circle r="20" fill="url(#inAxle)"/></g>
+        ${guard}<path d="M-92 0H92M0-92V92" stroke="#9aa7b1" stroke-opacity=".55" stroke-width="2"/></g>`;
+    })();
+    const motor = (() => {
+      let fins = '';
+      for (let y = 318; y <= 444; y += 14) fins += `<rect x="890" y="${y}" width="170" height="5" rx="2" fill="#12345a" opacity=".7"/>`;
+      return `<rect x="884" y="296" width="190" height="172" rx="16" fill="url(#inMotor)" stroke="#0f2f52" stroke-width="3"/>${fins}
+        <rect x="906" y="352" width="78" height="46" rx="4" fill="#e5eaee"/>
+        <text x="945" y="374" text-anchor="middle" font-family="Arial,sans-serif" font-weight="800" font-size="20" fill="#123c69">IE5</text>
+        <text x="945" y="393" text-anchor="middle" font-family="Arial,sans-serif" font-weight="800" font-size="13" fill="#123c69">VSD</text>
+        <circle class="ig-led" cx="1010" cy="322" r="18" fill="url(#inLed)"/><circle cx="1010" cy="322" r="4.5" fill="#eafff1"/>
+        <svg x="846" y="340" width="40" height="84" overflow="hidden"><g class="ig-coup">${
+          Array.from({ length: 5 }, (_, i) => `<rect y="${i * 32}" width="40" height="16" fill="#d1d9de"/><rect y="${i * 32 + 16}" width="40" height="16" fill="#3a454c"/>`).join('')}</g></svg>`;
+    })();
+    const gears = gate(1.25, -8, 6, G.map(gearShadow).join('') + G.map(g => gearEl(g) + gearLit(g)).join('') + fan + motor);
+
+    // 03 · screw element: male rotor above, female rotor below, lobes running toward the core
+    const lobes = (h, fill, skew) => { let s = ''; for (let x = -560; x <= 1560; x += 180) s += `<rect x="${x}" width="180" height="${h}" fill="url(#${fill})"/>`;
+      return `<g class="ig-lobes"><g transform="skewX(${skew})">${s}</g></g>`; };
+    const rotor = (y, h, clip, base, fill, skew, glowY) => `<g transform="translate(0 ${y})">
+      <rect x="-224" y="-16" width="1448" height="${h + 32}" rx="28" fill="url(#inCast)"/>
+      <g clip-path="url(#${clip})"><rect x="-200" width="1400" height="${h}" fill="${base}"/>${lobes(h, fill, skew)}<rect x="-200" width="1400" height="${h}" fill="url(#cyl)"/></g>
+      <rect class="rotor-edge" x="-200" width="1400" height="${h}" rx="20"/>
+      <line x1="-200" x2="1200" y1="${glowY}" y2="${glowY}" stroke="#e8a12a" stroke-opacity=".35" stroke-width="10"/>
+      <line class="ig-oil" x1="-200" x2="1200" y1="${glowY}" y2="${glowY}" stroke="#ffc35a" stroke-width="3.5"/></g>`;   // injected oil film
+    const screw = gate(2.3, 4, -3, rotor(50, 170, 'inClipM', '#4a606b', 'lobeM', -35, 172) + rotor(800, 140, 'inClipF', '#6f8792', 'lobeF', 35, -2));
+
+    // DOM order far → near (also z-sorted by preserve-3d; this keeps browsers without it correct)
+    host.innerHTML = defs + [screw, rib(1.95, 6, -2), gears, rib(.85, -4, 3), filter, rib(0, 2, -5)].join('');
+  },
+  cap(i){
+    const c = el.inCap; c.classList.remove('on');
+    if (i < 0) return;
+    at(260, () => {
+      c.querySelector('.n').textContent = this.CAPS[i][0];
+      c.querySelector('.t').textContent = this.CAPS[i][1];
+      c.classList.add('on');
+    });
+  }
+};
+
+// Prologue timeline is derived from the hook line itself, so the door sequence never overlaps the text:
+// text types in → holds → fades out → (while fading) the door seam traces → light shaft → doors open in scene 01.
+const HOOK = (() => {
+  const chars = $('#hookLine').textContent.replace(/\s+/g, '').length;
+  const say  = 700;                                  // first character starts
+  const full = say + (chars - 1) * 34 + 1000;        // last character finished (34 ms stagger + 1 s chIn)
+  const fade = full + 1700;                          // reading hold, then fade (1 s)
+  const trace = fade + 400;                          // seam starts drawing while the text is fading out
+  const shaft = trace + 2300;                        // seam fully drawn (edge 1.8 s, mid 1 s @1.5 s)
+  return { say, fade, trace, shaft, dur: shaft + 1500 };
+})();
+
+const SCENES = [
+  { num: '00', name: 'Prologue', dur: HOOK.dur, enter(){
+      show(el.stageSec); show(el.hook);
+      FX.setMode('dust', { mix: ['p', 't'], count: 22 });
+      at(1200, () => document.body.classList.add('hud-on'));
+      at(HOOK.say,   () => el.hook.classList.add('say'));
+      at(HOOK.fade,  () => el.hook.classList.add('fade'));
+      at(HOOK.trace, () => el.stage.classList.add('trace'));
+      at(HOOK.shaft, () => el.stage.classList.add('shaft-on'));
+  }},
+  { num: '01', name: 'The Reveal', dur: 5300, enter(){
+      hide(el.hook); ensure(el.stageSec);
+      el.stage.classList.add('trace', 'lit');
+      FX.setMode('dust', { mix: ['t', 't', 'w'], count: 60 });
+      at(800,  () => el.stageSec.classList.add('chip-in'));
+      at(2300, () => el.stage.classList.add('unlock'));          // latches release, light leaks from the seam
+      at(3000, () => el.stage.classList.add('open'));            // doors swing open (2.1 s) + camera push-in (2.3 s) start together
+      at(3200, () => FX.setMode('intake', { point: doorCenter() }));
+      at(3600, () => el.stageSec.classList.remove('chip-in'));
+      // scene ends at 5300 = the moment the push-in ends with the doors fully open → the dive takes over
+  }},
+  { num: '02', name: 'Into the Machine', dur: 9900, enter(){
+      ensure(el.stageSec); el.stageSec.classList.remove('chip-in');
+      el.stage.classList.add('lit', 'unlock', 'open', 'dive');   // already set in normal playback; needed when skipping here
+      FX.setMode('warp', { center: doorCenter(), wmix: ['i', 'i', 'i', 't', 'o'] });   // air streaks + a few oil-amber ones
+      // the dive carries us through the doorway into the machine: the gates start flying past (CSS, ~4.7 s)
+      at(800,  () => show(el.inside));
+      at(1000, () => document.body.classList.add('hud-dark'));
+      at(2000, () => hide(el.stageSec));
+      at(1800, () => Inside.cap(0));                             // each caption lands as its part rushes by
+      at(2900, () => Inside.cap(1));
+      at(4000, () => Inside.cap(2));
+      at(4900, () => { Inside.cap(-1); el.inside.classList.add('flare'); });   // the core flares white …
+      at(5300, () => document.body.classList.remove('hud-dark'));
+      at(5500, () => { show(el.into); hide(el.inside); });      // … and we come out into the light
+      at(5800, () => FX.toText());                               // warp streaks converge into the words (~1.2 s)
+      // particles have landed → the solid title blurs in underneath them, then the particles blow away
+      // so the clean text holds on its own for ~2.4 s before the scene cross-fades out
+      at(6900, () => { el.into.classList.remove('settle'); void el.invGlow.offsetWidth; el.into.classList.add('settle'); });
+      at(8000, () => FX.scatter());
+  }},
+  // Scenes 03–07 tightened (65 s → ~56 s overall): same beats, shorter dead air before/after each reveal
+  { num: '03', name: 'The Heart', dur: 7500, enter(){
+      hide(el.into); show(el.rotors);
+      FX.setMode('dust', { mix: ['t', 'p', 'w'], count: 55, drift: 'x' });
+      at(1000, () => el.rotors.classList.add('panel-in'));
+      at(1600, () => { el.rotors.classList.add('lasing'); FX.sparkOn = true; });
+      at(4400, () => { FX.sparkOn = false; el.rotors.classList.add('burned'); });
+  }},
+  { num: '04', name: 'Precision', dur: 6600, enter(){
+      hide(el.rotors); show(el.gears);
+      FX.setMode('dust', { mix: ['t', 'g', 'w'], count: 45 });
+      at(800,  () => el.gears.classList.add('panel-in'));
+      at(1200, () => Flip.run());
+  }},
+  { num: '05', name: 'Cooling & Separation', dur: 6200, enter(){
+      hide(el.gears); show(el.cool);
+      FX.setMode('rise', { mix: ['w', 't'] });
+      at(1000, () => el.cool.classList.add('project'));
+  }},
+  { num: '06', name: 'The Exit', dur: 4700, enter(){
+      hide(el.cool); show(el.exit);
+      at(80,  () => Exit.measure());                              // measure once, well before anything moves
+      at(700, () => el.exit.classList.add('say'));
+  }},
+  { num: '07', name: 'The Lineup', dur: 6800, enter(){
+      hide(el.exit); show(el.lineup);
+      FX.setMode('dust', { mix: ['t', 'w', 't'], count: 40 });
+      at(300, () => el.lineup.classList.add('reveal'));          // E-Air lands first, the others follow (CSS stagger)
+  }},
+  { num: '08', name: 'See you at Air Tech', dur: Infinity, enter(){
+      // straight from the lineup into the end card (no GA 75 dissolve in between)
+      hide(el.lineup);
+      at(200,  () => show(el.end));
+      at(500,  () => el.end.classList.add('sweeping'));
+      at(1900, () => FX.setMode('dust', { mix: ['g', 't', 'g', 'w'], count: 55 }));
+      at(3700, () => document.body.classList.add('ended'));
+      if (BOOTH) at(BOOTH_HOLD, () => go(0, false));             // stand screen: loop forever
+  }}
+];
+const TOTAL = SCENES.slice(0, -1).reduce((s, x) => s + x.dur, 0);
+const STARTS = []; SCENES.reduce((s, x, i) => (STARTS[i] = s, s + x.dur), 0);
+
+const chNum = $('#chNum'), chName = $('#chName'), pfill = $('#pfill');
+function chapter(i){
+  chNum.textContent = SCENES[i].num;
+  chName.textContent = SCENES[i].name; chName.style.animation = 'none'; void chName.offsetWidth; chName.style.animation = '';
+}
+function hardReset(){
+  document.querySelectorAll('.scene').forEach(s => s.className = 'scene');
+  el.stage.className = 'stage';
+  el.inCap.classList.remove('on');
+  document.body.classList.remove('ended', 'hud-dark');
+  FX.reset(); Flip.reset();
+}
+function go(i, natural){
+  if (i >= SCENES.length) return;
+  if (!natural) { E.tasks = []; hardReset(); document.body.classList.add('hud-on'); }
+  E.idx = i; E.t0 = E.T; SCENES[i].enter(); chapter(i);
+}
+function loop(now){
+  const dt = Math.min(50, now - (E.last || now)); E.last = now; E.T += dt;
+  if (E.tasks.length) {
+    const due = E.tasks.filter(t => t.at <= E.T);
+    if (due.length) { E.tasks = E.tasks.filter(t => t.at > E.T); due.sort((a, b) => a.at - b.at).forEach(t => t.fn()); }
+  }
+  const sc = SCENES[E.idx];
+  if (sc && !HOLD && E.T - E.t0 >= sc.dur) go(E.idx + 1, true);
+  FX.frame(dt);
+  const p = E.idx >= SCENES.length - 1 ? 1 : (STARTS[E.idx] + (E.T - E.t0)) / TOTAL;
+  pfill.style.width = (Math.min(1, p) * 100).toFixed(2) + '%';
+  requestAnimationFrame(loop);
+}
+
+(() => { const host = $('#progress'); STARTS.slice(1, -1).concat([TOTAL]).forEach(s => { const t = document.createElement('span'); t.className = 'tick'; t.style.left = (s / TOTAL * 100) + '%'; host.appendChild(t); }); })();
+
+// ---- Background music --------------------------------------------------------------
+// Sound is ON by default. Autoplay strategy (most aggressive the browser allows):
+//  1. the moment the script runs, try to play WITH sound (works where the site has autoplay permission);
+//  2. if blocked, start the track MUTED (always allowed) so it is already rolling;
+//  3. on the very first interaction of any kind (pointer, mouse, touch, key, wheel, scroll),
+//     caught in the capture phase on window so nothing can swallow it, unmute and swell in.
+// Listeners stay armed until sound is actually audible, then remove themselves.
+const Music = {
+  a: $('#bgm'), btn: $('#sound'), target: .55, wanted: true, audible: false, raf: 0,
+  EVENTS: ['pointerdown', 'pointerup', 'mousedown', 'mouseup', 'click', 'touchstart', 'touchend',
+           'keydown', 'keyup', 'wheel', 'scroll', 'touchmove'],
+  init(){
+    const a = this.a; a.volume = 0;
+    const src = a.querySelector('source');
+    (src || a).addEventListener('error', () => this.btn.classList.add('missing'));   // no track yet → hide toggle
+    this.ui(true);
+    // toggle: if we're not actually audible yet (blocked / muted), a press means "give me sound"
+    this.btn.addEventListener('click', () => this.wanted && this.audible ? this.stop() : (this.wanted = true, this.start()));
+    this.unlock = e => {
+      if (e && e.target && e.target.closest && e.target.closest('#sound')) return;   // the toggle handles itself
+      if (this.wanted && !this.audible) this.start();
+    };
+    this.EVENTS.forEach(t => addEventListener(t, this.unlock, { capture: true, passive: true }));
+    document.addEventListener('visibilitychange', () => {
+      // rAF is paused in background tabs, so pause immediately and fade back in on return
+      if (document.hidden) { if (!a.paused) { cancelAnimationFrame(this.raf); a.pause(); } }
+      else if (this.wanted) {
+        if (this.audible) { a.volume = 0; a.play().then(() => this.fade(this.target, 1400)).catch(() => {}); }
+        else this.start();
+      }
+    });
+    addEventListener('pageshow', () => { if (this.wanted && !this.audible) this.start(); });
+    this.start();                                                     // fire immediately on open
+  },
+  detach(){ this.EVENTS.forEach(t => removeEventListener(t, this.unlock, { capture: true })); },
+  fade(to, ms, done){
+    cancelAnimationFrame(this.raf);
+    const a = this.a, from = a.volume, t0 = performance.now();
+    const step = now => {
+      const k = Math.min(1, (now - t0) / ms), e = k * k * (3 - 2 * k);   // smoothstep
+      a.volume = Math.max(0, Math.min(1, from + (to - from) * e));
+      if (k < 1) this.raf = requestAnimationFrame(step); else if (done) done();
+    };
+    this.raf = requestAnimationFrame(step);
+  },
+  start(){
+    const a = this.a;
+    if (this.audible) return Promise.resolve();
+    a.muted = false;
+    return a.play().then(() => {
+      if (!this.wanted) return;
+      a.muted = false;                                                // a racing muted fallback can't leave it silent
+      const first = !this.audible;
+      this.audible = true; this.ui(true); this.detach();
+      if (first) this.fade(this.target, 3200);                        // slow cinematic swell
+    }).catch(() => {
+      // blocked → keep the track rolling muted; the first gesture only has to unmute it
+      if (this.audible || !this.wanted) return;
+      a.muted = true;
+      return a.play().catch(() => {});
+    });
+  },
+  stop(){
+    this.wanted = false; this.audible = false; this.ui(false);
+    this.fade(0, 900, () => { this.a.pause(); this.a.muted = false; });
+  },
+  ui(on){
+    this.btn.classList.toggle('on', on);
+    this.btn.setAttribute('aria-pressed', on);
+    this.btn.setAttribute('aria-label', on ? 'Turn sound off' : 'Turn sound on');
+  }
+};
+if (BOOTH) {
+  // exhibition hall: no music, and keep the screen awake where the browser allows it
+  Music.wanted = false; document.body.classList.add('booth');
+  const awake = () => { if (navigator.wakeLock) navigator.wakeLock.request('screen').catch(() => {}); };
+  awake(); document.addEventListener('visibilitychange', () => { if (!document.hidden) awake(); });
+} else Music.init();
+
+$('#skip').addEventListener('click', () => go(Math.min(E.idx + 1, SCENES.length - 1), false));
+$('#replay').addEventListener('click', () => go(0, false));
+
+const tilt = $('.tilt');
+addEventListener('pointermove', e => {
+  tilt.style.setProperty('--px', ((e.clientX / innerWidth) * 2 - 1).toFixed(3));
+  tilt.style.setProperty('--py', ((e.clientY / innerHeight) * 2 - 1).toFixed(3));
+}, { passive: true });
+
+function initCardTilt(){
+  const card = $('#card');
+  if (window.VanillaTilt) {
+    VanillaTilt.init(card, { max: 9, speed: 900, perspective: 1100, glare: true, 'max-glare': .18, gyroscope: true, gyroscopeMaxAngleX: 10, gyroscopeMaxAngleY: 10 });
+  }
+}
+
+// ---- Scene 4 gear realism ------------------------------------------------------------
+// Adds depth to every gear WITHOUT per-frame filter cost:
+//  • inside the spinning group: tooth outline + chamfered tooth face, lathe marks, hole walls,
+//    domed bolt heads, ambient occlusion round the hub (all rotation-invariant, so spinning is free)
+//  • static layers (never rotate): soft cast shadow under the whole train, and a fixed top-left key light
+//    (face sheen, specular hotspot, raised rim bevel, recessed web bevel, hub dome) so light stays put.
+const Gears = {
+  enhance(){
+    const svg = $('#gearsvg'), shadows = $('#gearShadows'); if (!svg || !shadows) return;
+    const NS = 'http://www.w3.org/2000/svg';
+    const mk = (tag, attrs, parent, before) => {
+      const n = document.createElementNS(NS, tag);
+      for (const k in attrs) n.setAttribute(k, attrs[k]);
+      parent.insertBefore(n, before || null); return n;
+    };
+    const rOf = n => n ? parseFloat(n.getAttribute('r')) : 0;
+    const arcR = n => parseFloat(n.getAttribute('d').slice(1));        // paths are "M<r> 0A<r> <r> ..."
+    svg.querySelectorAll('.gear').forEach(gear => {
+      const outer = gear.parentNode, t = outer.transform.baseVal.consolidate();
+      const x = t ? t.matrix.e : 0, y = t ? t.matrix.f : 0;
+      const teeth = gear.querySelector('.g-teeth'), body = gear.querySelector('.g-body');
+      const ring = gear.querySelector('.g-ring'), hub = gear.querySelector('.g-hub');
+      const bodyR = rOf(body), ringR = rOf(ring), hubR = rOf(hub);
+      const pitch = teeth ? arcR(teeth) : 0, tipR = teeth ? pitch + 9 : bodyR;
+      const gold = teeth && teeth.classList.contains('gold') ? ' gold' : '';
+
+      // cast shadow on the back plate (light from top-left → falls bottom-right)
+      const off = 4 + tipR * .05;
+      mk('circle', { class: 'g-shadow', cx: (x + off).toFixed(1), cy: (y + off * 1.6).toFixed(1), r: (tipR * 1.1).toFixed(1) }, shadows);
+
+      // ---- rotating detail ----
+      if (teeth) {
+        const d = teeth.getAttribute('d');
+        mk('path', { class: 'g-teeth-edge' + gold, d }, gear, teeth);
+        mk('path', { class: 'g-teeth-face' + gold, d }, gear, teeth.nextSibling);
+      }
+      if (body) mk('circle', { class: 'g-lathe', r: bodyR }, gear, body.nextSibling);
+      gear.querySelectorAll('.g-win').forEach(w => {
+        const R = arcR(w), pl = +w.getAttribute('pathLength'), sw = +w.getAttribute('stroke-width');
+        const e = 3 / (2 * Math.PI * R / pl);                             // 3px in pathLength units
+        mk('path', { class: 'g-win-rim', d: w.getAttribute('d'), pathLength: pl, 'stroke-width': sw + 6,
+          style: `stroke-dasharray:${(.7 + 2 * e).toFixed(4)} ${(.3 - 2 * e).toFixed(4)};stroke-dashoffset:${e.toFixed(4)}` }, gear, w);
+      });
+      gear.querySelectorAll('.g-bolts').forEach(b => {
+        mk('path', { class: 'g-bolts-hi', d: b.getAttribute('d'), pathLength: b.getAttribute('pathLength'),
+          'stroke-width': (+b.getAttribute('stroke-width') * .45).toFixed(2) }, gear, b.nextSibling);
+      });
+      if (hub) mk('circle', { class: 'g-ao', r: (hubR * 1.45).toFixed(1) }, gear, hub);
+
+      // ---- static light layer (translate only, never rotates) ----
+      const lit = mk('g', { transform: `translate(${x.toFixed(2)} ${y.toFixed(2)})`, 'aria-hidden': 'true' }, svg, outer.nextSibling);
+      if (teeth) mk('circle', { class: 'g-sheen-t', r: pitch }, lit);
+      mk('circle', { class: 'g-sheen', r: bodyR }, lit);
+      mk('circle', { class: 'g-spec', r: bodyR }, lit);
+      mk('circle', { class: 'g-bevel', r: bodyR - 1.5, 'stroke-width': 3 }, lit);
+      if (ring) mk('circle', { class: 'g-bevel-in', r: ringR, 'stroke-width': 2.5 }, lit);
+      if (hub) {
+        mk('circle', { class: 'g-hub-sheen', r: hubR }, lit);
+        mk('circle', { class: 'g-bevel', r: hubR - 1, 'stroke-width': 2 }, lit);
+      }
+    });
+  }
+};
+
+// ---- Scene 6 title: per-letter "spacing collapse" done with transforms instead of letter-spacing ----
+const Exit = {
+  node: $('#s-exit .exit-text'), chars: [],
+  split(){
+    const n = this.node, words = n.textContent.trim().split(/\s+/); n.textContent = '';
+    words.forEach((w, wi) => {
+      const ws = document.createElement('span'); ws.className = 'w';
+      for (const ch of w) { const s = document.createElement('span'); s.className = 'xc'; s.textContent = ch; ws.appendChild(s); this.chars.push(s); }
+      n.appendChild(ws); if (wi < words.length - 1) n.appendChild(document.createTextNode(' '));
+    });
+    n.setAttribute('aria-label', words.join(' '));
+  },
+  // Each letter starts displaced from its line's centre as if letter-spacing were ~.6em
+  // (extra .54em per glyph ≈ 0.62 × its distance from centre at the final .06em spacing).
+  measure(){
+    const cs = this.chars; if (!cs.length) return;
+    // all letters share one offsetParent (.exit-text — its will-change makes it the containing block),
+    // so offsetLeft/Top are directly comparable
+    const pos = cs.map(c => ({ c, top: c.offsetTop, l: c.offsetLeft, w: c.offsetWidth }));
+    const lines = new Map();
+    pos.forEach(p => { const k = Math.round(p.top); const L = lines.get(k) || { min: Infinity, max: -Infinity }; L.min = Math.min(L.min, p.l); L.max = Math.max(L.max, p.l + p.w); lines.set(k, L); });
+    pos.forEach(p => {
+      const L = lines.get(Math.round(p.top)), mid = (L.min + L.max) / 2;
+      p.c.style.setProperty('--dx', ((p.l + p.w / 2 - mid) * .62).toFixed(2) + 'px');
+    });
+  }
+};
+Exit.split();
+addEventListener('resize', () => { if (el.exit.classList.contains('on')) Exit.measure(); });
+
+// ---- End card extras: personal greeting (?to=…) + Add to Calendar ----------------------------
+(() => {
+  const to = (QS.get('to') || '').replace(/\s+/g, ' ').trim().slice(0, 60);
+  if (to) {
+    const d = $('#dear'); d.textContent = `Dear ${to},`; d.hidden = false;   // textContent → never parsed as HTML
+    document.title = `${to} — you are invited · CATE × Atlas Copco`;
+  }
+})();
+const Cal = {
+  // Air Tech: Dec 17–20, 09:00–19:00 Cairo (UTC+2 in December) → 07:00–17:00 UTC, repeated daily ×4
+  title: 'Air Tech — CATE × Atlas Copco',
+  start: '20261217T070000Z', end: '20261217T170000Z', rrule: 'FREQ=DAILY;COUNT=4',
+  map: 'https://maps.app.goo.gl/4ehLESWXiw6kLj1z9',
+  where(){   // hall + booth read from the card itself, so the calendar can never disagree with it
+    const b = [...document.querySelectorAll('#s-end .booth span')].map(s => s.textContent.trim());
+    return `Egypt International Exhibitions Center, ${b.map(s => s.replace(/^(\w)(\w*)/, (m, a, z) => a + z.toLowerCase())).join(', ')}`;
+  },
+  details(){ return `Visit CATE × Atlas Copco at Air Tech — ${this.where().split(', ').slice(1).join(' | ')}. Daily 9:00 AM – 7:00 PM.\nLocation: ${this.map}`; },
+  ics(){
+    const esc = s => s.replace(/\\/g, '\\\\').replace(/([,;])/g, '\\$1').replace(/\n/g, '\\n');
+    const now = new Date().toISOString().replace(/[-:]/g, '').replace(/\.\d+/, '');
+    return ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//CATE//Air Tech Invitation//EN', 'CALSCALE:GREGORIAN', 'METHOD:PUBLISH',
+      'BEGIN:VEVENT', 'UID:airtech-2026-cate-atlas-copco-invitation', `DTSTAMP:${now}`,
+      `DTSTART:${this.start}`, `DTEND:${this.end}`, `RRULE:${this.rrule}`,
+      `SUMMARY:${esc(this.title)}`, `LOCATION:${esc(this.where())}`, `DESCRIPTION:${esc(this.details())}`, `URL:${this.map}`,
+      'BEGIN:VALARM', 'TRIGGER:-PT2H', 'ACTION:DISPLAY', `DESCRIPTION:${esc(this.title)}`, 'END:VALARM',
+      'END:VEVENT', 'END:VCALENDAR'].join('\r\n');
+  },
+  google(){
+    const p = new URLSearchParams({ action: 'TEMPLATE', text: this.title, dates: `${this.start}/${this.end}`,
+      details: this.details(), location: this.where(), recur: `RRULE:${this.rrule}` });
+    return `https://calendar.google.com/calendar/render?${p}`;
+  },
+  add(){
+    const ua = navigator.userAgent;
+    if (/Android/i.test(ua)) { window.open(this.google(), '_blank', 'noopener'); return; }   // Android: Google Calendar
+    const ics = this.ics();
+    if (/iPhone|iPad|iPod/i.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1)) {   // iOS: opens the Calendar sheet
+      location.href = 'data:text/calendar;charset=utf-8,' + encodeURIComponent(ics); return;
+    }
+    const a = document.createElement('a');                                                         // desktop: .ics for Outlook / Apple Calendar
+    a.href = URL.createObjectURL(new Blob([ics], { type: 'text/calendar;charset=utf-8' }));
+    a.download = 'AirTech-CATE-AtlasCopco.ics'; document.body.appendChild(a); a.click();
+    setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 1000);
+  }
+};
+$('#addCal').addEventListener('click', e => { e.preventDefault(); Cal.add(); });
+
+splitChars($('#hookLine'));
+Gears.enhance(); Inside.build(); Flip.build(); FX.init();
+
+// wait for images + fonts (max 5 s) so the machine and the particle text are ready before the film rolls
+const imgs = [...document.images].map(i => i.complete ? Promise.resolve() :
+  new Promise(r => { i.addEventListener('load', r, { once: true }); i.addEventListener('error', r, { once: true }); }));
+const fonts = document.fonts ? Promise.all([document.fonts.load('800 100px "Exo 2"'), document.fonts.load('700 40px "Barlow Condensed"')]).catch(() => {}) : Promise.resolve();
+Promise.race([Promise.all([fonts, ...imgs]), new Promise(r => setTimeout(r, 5000))]).then(() => {
+  $('#loader').classList.add('gone');
+  if (document.readyState === 'complete') initCardTilt(); else addEventListener('load', initCardTilt);
+  const startAt = Math.max(0, Math.min(SCENES.length - 1, parseInt(QS.get('scene'), 10) || 0));
+  setTimeout(() => { go(startAt, false); if (!startAt) document.body.classList.remove('hud-on'); requestAnimationFrame(loop); if (Music.wanted && !Music.audible) Music.start(); }, 500);
+});
+})();
+</script>
+</body>
+</html>

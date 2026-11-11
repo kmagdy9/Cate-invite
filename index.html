@@ -339,19 +339,9 @@ img{display:block}
 #s-inside .tower-lbl{font-size:22px;font-weight:800;fill:var(--lbl)}
 #s-inside .gauge-txt text{font-size:10px;fill:var(--mut);font-weight:600}
 #s-inside .seize-txt{display:none}
-#s-inside .in-cap{z-index:4}   /* above the gates flying past the camera */
 #s-inside .sol-line{fill:none;stroke:#22c55e;stroke-width:3.5;stroke-dasharray:2 5;stroke-linecap:round}
 #s-inside .bg1{stop-color:#18293a} #s-inside .bg2{stop-color:#091119} #s-inside .grid-line{stroke:rgba(140,190,230,.06)}
 
-/* component caption, bottom-left: "01 — AIR INTAKE FILTER" */
-.in-cap{position:absolute;left:clamp(16px,5vw,72px);bottom:calc(max(var(--bar),60px) + clamp(20px,5vh,56px));
-  display:flex;align-items:center;gap:.9em;white-space:nowrap;
-  font-family:'Barlow Condensed',sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.32em;
-  font-size:clamp(14px,1.6vw,20px);color:#e9fbff;text-shadow:0 0 14px rgba(0,165,217,.7);
-  opacity:0;transform:translateY(10px);transition:opacity .45s ease,transform .6s var(--ease-out)}
-.in-cap::before{content:'';width:2.6em;height:1px;background:linear-gradient(90deg,transparent,var(--turq))}
-.in-cap .n{color:#ffb020;font-weight:700}
-.in-cap.on{opacity:1;transform:none}
 
 /* HUD turns light while we're inside the dark machine */
 .hud{transition:opacity 1.6s ease,color .8s ease}
@@ -717,10 +707,6 @@ body.hud-on .hud{opacity:1}
   height: max(var(--bar), 60px);
   padding-bottom: env(safe-area-inset-bottom);
 }
-.chapter{display:flex;gap:.9em;white-space:nowrap;min-width:0}
-.chapter .num{color:var(--turq)}
-.chapter .name{animation:chap .9s var(--ease-out)}
-@keyframes chap{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
 .progress{position:relative;flex:1;height:1px;background:rgba(0,75,102,.1);min-width:40px}
 .progress .fill{position:absolute;left:0;top:0;bottom:0;width:0;background:linear-gradient(90deg,var(--turq),var(--petrol));}
 .progress .tick{position:absolute;top:-2px;width:1px;height:5px;background:rgba(0,75,102,.2)}
@@ -730,12 +716,9 @@ body.hud-on .hud{opacity:1}
   backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);transition:background .3s,border-color .3s,color .3s}
 .btn:hover,.btn:focus-visible{background:rgba(0,165,217,.1);border-color:var(--turq);outline:none}
 .btn{white-space:nowrap}
-/* phones: the chapter name ran under the progress line — keep just the number */
-@media (max-width:420px){ .chapter .name{display:none} }
-/* very narrow phones: tighter bar — keep the chapter number, drop its name, slimmer buttons on one line */
+/* very narrow phones: tighter bar, slimmer buttons on one line */
 @media (max-width:359px){
   .hud.bot{gap:10px;padding-left:10px;padding-right:10px}
-  .chapter .name{display:none}
   .ctrl{gap:6px}
   .btn{padding:.7em .85em;letter-spacing:.16em}
   .sound{gap:.45em}
@@ -820,7 +803,6 @@ body.ended #skip{display:none}
     <div class="core"></div>
     <div class="tunnel" id="tunnel"></div>
     <div class="wash"></div>
-    <div class="in-cap" id="inCap"><span class="n"></span><span class="t"></span></div>
   </section>
 
 
@@ -1171,7 +1153,6 @@ EXHIBITIONS CENTER</div>
 
 
 <footer class="hud bot">
-  <div class="chapter"><span class="num" id="chNum">00</span><span class="name" id="chName">Prologue</span></div>
   <div class="progress" id="progress"><div class="fill" id="pfill"></div></div>
   <div class="ctrl">
     <button class="btn sound on" id="sound" type="button" aria-pressed="true" aria-label="Turn sound off"><span class="eq" aria-hidden="true"><i></i><i></i><i></i></span><span class="lbl">Sound</span></button>
@@ -1204,7 +1185,7 @@ const BOOTH = QS.has('booth');
 const BOOTH_HOLD = Math.max(3, parseInt(QS.get('booth'), 10) || 15) * 1000;   // ?booth=20 → hold the end card 20 s
 
 const el = {
-  stageSec: $('#s-stage'), stage: $('#stage'), hook: $('#s-hook'), into: $('#s-into'), inside: $('#s-inside'), inCap: $('#inCap'),
+  stageSec: $('#s-stage'), stage: $('#stage'), hook: $('#s-hook'), into: $('#s-into'), inside: $('#s-inside'),
   rotors: $('#s-rotors'), gears: $('#s-gears'), cool: $('#s-cool'), exit: $('#s-exit'), lineup: $('#s-lineup'), end: $('#s-end'),
   invGlow: $('#invGlow'), laser: $('#laser'), burn: $('#burn')
 };
@@ -1508,21 +1489,11 @@ function doorCenter(){ const r = el.stage.getBoundingClientRect(); return { x: r
 // Gears reuse the Scene 4 gear classes + gradients, and are meshed properly: module 10
 // (pitch radius = 5 × teeth), centre distance = sum of pitch radii, and the driven gear's start
 // angle is solved so its gap sits exactly on the driver's tooth at the contact point.
-// Scene 02 gates: artwork + running machinery live in gates.js (Gates.build / Gates.frame); captions stay here.
+// Scene 02 gates: artwork + running machinery live in gates.js (Gates.build / Gates.frame). No captions: the parts speak for themselves.
 const Inside = {
-  CAPS: Gates.CAPS,
   build(){
     const host = $('#tunnel'); if (host) Gates.build(host);
     const cav = $('.interior .cav'); if (cav) cav.innerHTML = Gates.cavity();   // the machine seen through the open doors
-  },
-  cap(i){
-    const c = el.inCap; c.classList.remove('on');
-    if (i < 0) return;
-    at(260, () => {
-      c.querySelector('.n').textContent = this.CAPS[i][0];
-      c.querySelector('.t').textContent = this.CAPS[i][1];
-      c.classList.add('on');
-    });
   }
 };
 
@@ -1570,8 +1541,7 @@ const SCENES = [
       at(800,  () => { Gates.reset(); show(el.inside); });       // the gates start flying past (CSS, ~8 s)
       at(1000, () => document.body.classList.add('hud-dark'));
       at(2000, () => hide(el.stageSec));
-      Gates.DL.forEach((dl, i) => at(800 + dl * 1000 + 500, () => Inside.cap(i)));   // each caption lands as its part rushes by
-      at(F,        () => { Inside.cap(-1); el.inside.classList.add('flare'); });   // the core flares white …
+      at(F,        () => el.inside.classList.add('flare'));         // the core flares white …
       at(F + 400,  () => document.body.classList.remove('hud-dark'));
       at(F + 600,  () => { show(el.into); hide(el.inside); });   // … and we come out into the light
       at(F + 900,  () => FX.toText());                           // warp streaks converge into the words (~1.2 s)
@@ -1622,22 +1592,17 @@ const SCENES = [
 const TOTAL = SCENES.slice(0, -1).reduce((s, x) => s + x.dur, 0);
 const STARTS = []; SCENES.reduce((s, x, i) => (STARTS[i] = s, s + x.dur), 0);
 
-const chNum = $('#chNum'), chName = $('#chName'), pfill = $('#pfill');
-function chapter(i){
-  chNum.textContent = SCENES[i].num;
-  chName.textContent = SCENES[i].name; chName.style.animation = 'none'; void chName.offsetWidth; chName.style.animation = '';
-}
+const pfill = $('#pfill');
 function hardReset(){
   document.querySelectorAll('.scene').forEach(s => s.className = 'scene');
   el.stage.className = 'stage';
-  el.inCap.classList.remove('on');
   document.body.classList.remove('ended', 'hud-dark');
   FX.reset(); Flip.reset();
 }
 function go(i, natural){
   if (i >= SCENES.length) return;
   if (!natural) { E.tasks = []; hardReset(); document.body.classList.add('hud-on'); }
-  E.idx = i; E.t0 = E.T; SCENES[i].enter(); chapter(i);
+  E.idx = i; E.t0 = E.T; SCENES[i].enter();
 }
 function loop(now){
   const dt = Math.min(50, now - (E.last || now)); E.last = now; E.T += dt;
